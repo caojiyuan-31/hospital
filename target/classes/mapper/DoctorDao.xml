@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.ganwuwang.hospital.dao.DoctorDao">
+
+    <resultMap id="BaseResultMap" type="cn.ganwuwang.hospital.domain.pojo.Doctor">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="user_id" property="userId" jdbcType="BIGINT" />
+        <id column="name" property="name" jdbcType="VARCHAR" />
+        <id column="department_id" property="departmentId" jdbcType="BIGINT" />
+        <id column="department_name" property="departmentName" jdbcType="VARCHAR" />
+        <id column="school_name" property="schoolName" jdbcType="VARCHAR" />
+        <id column="level" property="level" jdbcType="VARCHAR" />
+        <id column="url" property="url" jdbcType="VARCHAR" />
+        <id column="am" property="am" jdbcType="TINYINT" />
+        <id column="pm" property="pm" jdbcType="TINYINT" />
+        <id column="skill" property="skill" jdbcType="CLOB" />
+        <id column="description" property="description" jdbcType="CLOB" />
+        <id column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
+        <id column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+        <id column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+        <id column="created_user" property="createdUser" jdbcType="VARCHAR" />
+        <id column="modified_user" property="modifiedUser" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="whereSelectiveSql">
+        where 1=1
+        and (`delete_flag` = 0 or `delete_flag` is null)
+        <if test="query != null">
+            <if test="query.userId != null"> and `user_id` = #{query.userId}</if>
+            <if test="query.name != null and query.name != '' "> and `name` = #{query.name}</if>
+            <if test="query.departmentId != null"> and `department_id` = #{query.departmentId}</if>
+            <if test="query.departmentName != null and query.departmentName != '' "> and `department_name` = #{query.departmentName}</if>
+            <if test="query.schoolName != null and query.schoolName != '' "> and `school_name` = #{query.schoolName}</if>
+            <if test="query.level != null and query.level != '' "> and `level` = #{query.level}</if>
+            <if test="query.url != null and query.url != '' "> and `url` = #{query.url}</if>
+            <if test="query.am != null"> and `am` = #{query.am}</if>
+            <if test="query.pm != null"> and `pm` = #{query.pm}</if>
+            <if test="query.skill != null and query.skill != '' "> and `skill` = #{query.skill}</if>
+            <if test="query.description != null and query.description != '' "> and `description` = #{query.description}</if>
+            <if test="query.deleteFlag != null"> and `delete_flag` = #{query.deleteFlag}</if>
+            <if test="query.createdTime != null"> and `created_time` = #{query.createdTime}</if>
+            <if test="query.modifiedTime != null "> and `modified_time` = #{query.modifiedTime}</if>
+            <if test="query.createdUser != null and query.createdUser != '' "> and `created_user` = #{query.createdUser}</if>
+            <if test="query.modifiedUser != null and query.modifiedUser != ''"> and `modified_user` = #{query.modifiedUser}</if>
+        </if>
+    </sql>
+    <sql id="Base_Column_List">
+		id,user_id,name,department_id,department_name,school_name,level,url,am,pm,skill,description,delete_flag,created_time,modified_time,created_user,modified_user
+	</sql>
+
+    <select id="queryObject" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from register where id = #{value}
+    </select>
+
+    <select id="queryList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from doctor
+        <include refid="whereSelectiveSql" />
+
+        <if test="sort != null" >
+            order by
+            <foreach collection="sort" item="order" separator="," >
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+
+        <if test="page != null" >
+
+            <if test="page.offset >= 0 and page.pageSize > 0" >
+                limit ${page.offset}, ${page.pageSize}
+            </if>
+        </if>
+
+
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from doctor
+        <include refid="whereSelectiveSql" />
+    </select>
+
+    <insert id="save" parameterType="cn.ganwuwang.hospital.domain.pojo.Doctor" useGeneratedKeys="true" keyProperty="id">
+		insert into doctor
+		  (`user_id`,`name`,`department_id`,`department_name`,`school_name`,`level`,`url``am`,`pm`,`skill`,`description`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
+		values
+		  (#{userId},#{name},#{departmentId},#{departmentName},#{schoolName},#{level},#{url},#{am},#{pm},#{skill},#{description},#{deleteFlag},now(),now(),#{createdUser},#{modifiedUser})
+	</insert>
+
+    <update id="update" parameterType="cn.ganwuwang.hospital.domain.pojo.Doctor">
+        update doctor
+        <set>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="name != null and query.name != '' ">`name` = #{name},</if>
+            <if test="departmentId != null">`department_id` = #{departmentId},</if>
+            <if test="departmentName != null">`department_name` = #{departmentName},</if>
+            <if test="schoolName != null">`school_name` = #{schoolName},</if>
+            <if test="level != null">`level` = #{level},</if>
+            <if test="url != null">`url` = #{url},</if>
+            <if test="am != null">`am` = #{am},</if>
+            <if test="pm != null">`pm` = #{pm},</if>
+            <if test="skill != null and query.skill != '' ">`skill` = #{skill},</if>
+            <if test="description != null">`description` = #{description},</if>
+            <if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
+            <if test="createdTime != null">`created_time` = now(), </if>
+            <if test="modifiedTime != null">`modified_time` = now(), </if>
+            <if test="createdUser != null">`created_user` = #{createdUser}, </if>
+            <if test="modifiedUser != null">`modified_user` = #{modifiedUser}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete">
+		update doctor set delete_flag = 1 where id = #{value}
+	</update>
+
+    <update id="deleteBatch">
+        update doctor set delete_flag = 1 where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

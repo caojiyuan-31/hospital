@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.ganwuwang.hospital.dao.AnnouncementDao">
+
+    <resultMap id="BaseResultMap" type="cn.ganwuwang.hospital.domain.pojo.Announcement">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="title" property="title" jdbcType="VARCHAR" />
+        <id column="text" property="text" jdbcType="CLOB" />
+        <id column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
+        <id column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+        <id column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+        <id column="created_user" property="createdUser" jdbcType="VARCHAR" />
+        <id column="modified_user" property="modifiedUser" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="whereSelectiveSql">
+        where 1=1
+        and (`delete_flag` = 0 or `delete_flag` is null)
+        <if test="query != null">
+            <if test="query.title != null and query.title != '' "> and `title` = #{query.title}</if>
+            <if test="query.text != null and query.text != '' "> and `text` = #{query.text}</if>
+            <if test="query.deleteFlag != null"> and `delete_flag` = #{query.deleteFlag}</if>
+            <if test="query.createdTime != null"> and `created_time` = #{query.createdTime}</if>
+            <if test="query.modifiedTime != null "> and `modified_time` = #{query.modifiedTime}</if>
+            <if test="query.createdUser != null and query.createdUser != '' "> and `created_user` = #{query.createdUser}</if>
+            <if test="query.modifiedUser != null and query.modifiedUser != ''"> and `modified_user` = #{query.modifiedUser}</if>
+        </if>
+    </sql>
+    <sql id="Base_Column_List">
+		id,title,text,delete_flag,created_time,modified_time,created_user,modified_user
+	</sql>
+
+    <select id="queryObject" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from announcement where id = #{value}
+    </select>
+
+    <select id="queryList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from announcement
+        <include refid="whereSelectiveSql" />
+
+        <if test="sort != null" >
+            order by
+            <foreach collection="sort" item="order" separator="," >
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+
+        <if test="page != null" >
+
+            <if test="page.offset >= 0 and page.pageSize > 0" >
+                limit ${page.offset}, ${page.pageSize}
+            </if>
+        </if>
+
+
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from announcement
+        <include refid="whereSelectiveSql" />
+    </select>
+
+    <insert id="save" parameterType="cn.ganwuwang.hospital.domain.pojo.Announcement" useGeneratedKeys="true" keyProperty="id">
+		insert into announcement
+		  (`title`,`text`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
+		values
+		  (#{title},#{text},#{deleteFlag},now(),now(),#{createdUser},#{modifiedUser})
+	</insert>
+
+    <update id="update" parameterType="cn.ganwuwang.hospital.domain.pojo.Announcement">
+        update announcement
+        <set>
+            <if test="title != null">`title` = #{title},</if>
+            <if test="text != text">`text` = #{text},</if>
+            <if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
+            <if test="createdTime != null">`created_time` = now(), </if>
+            <if test="modifiedTime != null">`modified_time` = now(), </if>
+            <if test="createdUser != null">`created_user` = #{createdUser}, </if>
+            <if test="modifiedUser != null">`modified_user` = #{modifiedUser}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete">
+		update announcement set delete_flag = 1 where id = #{value}
+	</update>
+
+    <update id="deleteBatch">
+        update announcement set delete_flag = 1 where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>
