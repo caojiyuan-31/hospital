@@ -1,18 +1,23 @@
 package cn.ganwuwang.hospital;
 
+import cn.ganwuwang.hospital.classification.GetHtmlData;
 import cn.ganwuwang.hospital.classification.Probability;
 import cn.ganwuwang.hospital.classification.different;
 import cn.ganwuwang.hospital.controller.UserController;
 import cn.ganwuwang.hospital.dao.RoleDao;
+import cn.ganwuwang.hospital.domain.pojo.Data;
 import cn.ganwuwang.hospital.domain.pojo.Role;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.query.PageQuery;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
+import cn.ganwuwang.hospital.service.DataServiceImpl;
 import cn.ganwuwang.hospital.utils.GsonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.List;
 
 @SpringBootTest
 class HospitalApplicationTests {
@@ -31,6 +36,24 @@ class HospitalApplicationTests {
 
     @Autowired
     UserController userController;
+
+    @Autowired
+    DataServiceImpl dataService;
+
+    @Test
+    void data() throws GlobalException {
+
+        StringBuffer sb = new StringBuffer();
+        Data d = new Data();
+        List<String> list = GetHtmlData.getZZForSymptoms("/department/symptoms/55.html");
+        for(String o : list){
+            sb.append(GetHtmlData.getChinese(o)+"，");
+        }
+        d.setCategory("肿瘤科");
+        d.setText(sb.toString());
+        dataService.save(d);
+
+    }
 
     @Test
     void cache() throws GlobalException {
