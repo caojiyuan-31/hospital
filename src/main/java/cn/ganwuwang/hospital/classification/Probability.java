@@ -1,12 +1,18 @@
 package cn.ganwuwang.hospital.classification;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Component
 public class Probability {
 
-    private static TrainingDataManager tdm = new TrainingDataManager();
+    @Autowired
+    private TrainingDataManager tdm;
+
     private static final float M = 0F;
     private static double zoomFactor = 10.0f;
 
@@ -15,7 +21,7 @@ public class Probability {
      * @param c 给定的分类
      * @return 给定条件下的先验概率
      */
-    public static float calculatePc(String c)
+    public float calculatePc(String c)
     {
         float ret = 0F;
         float Nc = tdm.getTrainingFileCountOfClassification(c);
@@ -29,7 +35,7 @@ public class Probability {
      * @param x 给定的词
      * @return 给定条件下的先验概率
      */
-    public static float calculatePx(String x)
+    public float calculatePx(String x)
     {
         float ret = 0F;
         float Nc = tdm.getCountContainKey(x);
@@ -39,12 +45,26 @@ public class Probability {
     }
 
     /**
+     * 先验概率
+     * @param x 给定的词
+     * @return 给定条件下的先验概率
+     */
+    public float calculatePxx(String x, String c)
+    {
+        float ret = 0F;
+        float Nc = tdm.getCountContainKey(x);
+        float N = tdm.getCountContainKeyOfClassification(c,x);
+        ret = (N + 1) / (Nc + 1);
+        return ret;
+    }
+
+    /**
      * 计算类条件概率
      * @param x 给定的文本属性
      * @param c 给定的分类
      * @return 给定条件下的类条件概率
      */
-    public static float calculatePxc(String x, String c)
+    public float calculatePxc(String x, String c)
     {
         float ret = 0F;
         float Nxc = tdm.getCountContainKeyOfClassification(c, x);
@@ -61,7 +81,7 @@ public class Probability {
      * @param Cj 给定的类别
      * @return 分类条件概率连乘值，即<br>
      */
-    public static float calcProd(String[] X, String Cj)
+    public float calcProd(String[] X, String Cj)
     {
         float ret = 1.0F;
         // 类条件概率连乘
@@ -69,8 +89,8 @@ public class Probability {
         {
             String Xi = X[i];
             //因为结果过小，因此在连乘之前放大10倍，这对最终结果并无影响，因为我们只是比较概率大小而已
-            ret *= (calculatePxc(Xi, Cj) / calculatePx(Xi));
-            //ret *= calculatePxc(Xi, Cj)*zoomFactor;
+            //ret *= (calculatePxc(Xi, Cj) / calculatePx(Xi));
+            ret *= calculatePxc(Xi, Cj)*100 * calculatePxx(Xi, Cj);
             //System.out.println(Xi+"当前概率为"+ret);
         }
         // 再乘以先验概率
@@ -78,7 +98,7 @@ public class Probability {
         return ret;
     }
 
-    public static String classify(String text)
+    public String classify(String text)
     {
         String[] terms = null;
         terms= TextUtils.ChineseSpliter(text).split(",");//中文分词处理(分词后结果已去除停用词）

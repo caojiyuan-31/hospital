@@ -1,8 +1,15 @@
 package cn.ganwuwang.hospital.classification;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 
+@Component
 public class different {
+
+    @Autowired
+    Probability probability;
 
     private String[] traningFileClassifications;//测试语料分类集合
     private File traningTextDir;//测试语料存放目录
@@ -93,7 +100,7 @@ public class different {
         for(String p : path){
             String t = getText(p);
             System.out.println(t);
-            if(!classification.equals(Probability.classify(t))){
+            if(!classification.equals(probability.classify(t))){
                 ret++;
             };
         }

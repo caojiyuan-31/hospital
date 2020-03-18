@@ -2,255 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2abf5e7b-575e-4120-acb2-a6511e921dbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_spring_boot_starter_1_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_3_4_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_lettuce_lettuce_core_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_3_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ansj_ansj_seg_5_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_13_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_18_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nlpcn_nlp_lang_1_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/HospitalApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/ClassifyResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/TestMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/TextUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/TrainingDataManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/different.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserRoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/AnnouncementDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/BaseDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/DepartmentDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/DictionaryDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/DoctorDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/RegisterDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/ReplyDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/RoleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/dao/UserRoleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/constant/ResultEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/constant/StatusEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Announcement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Dictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Doctor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/LoadUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Register.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Reply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/query/Page.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/query/PageQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/query/Query.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/query/Sort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/results/GlobalException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/results/PageRes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/results/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/AnnouncementServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/DepartmentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/DictionaryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/DoctorServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/RegisterServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/ReplyServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserRoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/utils/CheckUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/utils/GsonUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AnnouncementDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DictionaryDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DoctorDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RegisterDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ReplyDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserRoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/stopword.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cn/ganwuwang/hospital/HospitalApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/hospital.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/HospitalApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/ClassifyResult.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/Probability$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/Probability.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/TestMain.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/TextUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/TrainingDataManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/classification/different.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/config/GlobalExceptionHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/config/WebSecurityConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/controller/TestController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/controller/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/controller/UserRoleController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/AnnouncementDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/BaseDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/DepartmentDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/DictionaryDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/DoctorDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/RegisterDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/ReplyDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/RoleDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/UserDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/dao/UserRoleDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/constant/ResultEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/constant/StatusEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Announcement.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Department.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Dictionary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Doctor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/LoadUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Register.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Reply.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Role.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/UserRole.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/query/Page.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/query/PageQuery.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/query/Query.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/query/Sort$Direction.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/query/Sort.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/results/GlobalException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/results/PageRes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/results/Result.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/AnnouncementServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/DepartmentServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/DictionaryServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/DoctorServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/RegisterServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/ReplyServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/RoleServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/UserRoleServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/utils/CheckUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/utils/GsonUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AnnouncementDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/DepartmentDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/DictionaryDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/DoctorDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/RegisterDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/ReplyDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/RoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/UserRoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/stopword.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/cn/ganwuwang/hospital/HospitalApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/TrainingDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/TrainingDataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/different.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/different.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/ganwuwang/hospital/HospitalApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/ganwuwang/hospital/HospitalApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,6 +31,13 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/caojiyuan-31/hospital.git" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -319,47 +84,8 @@
       <recent name="D:\workspace\hospital\src\main\java\cn\ganwuwang\hospital\domain\query" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HospitalApplicationTests.redis">
-    <configuration name="TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.classification.TestMain" />
-      <module name="hospital" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.ganwuwang.hospital.classification.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TextAnalysis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.classification.TextAnalysis" />
-      <module name="hospital" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.ganwuwang.hospital.classification.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TextUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.classification.TextUtils" />
-      <module name="hospital" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.ganwuwang.hospital.classification.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HospitalApplicationTests.redis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.HospitalApplication">
+    <configuration name="HospitalApplicationTests.cache" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hospital" />
       <extension name="coverage">
         <pattern>
@@ -369,13 +95,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="cn.ganwuwang.hospital" />
       <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.HospitalApplicationTests" />
-      <option name="METHOD_NAME" value="redis" />
+      <option name="METHOD_NAME" value="cache" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HospitalApplicationTests.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HospitalApplicationTests.different" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hospital" />
       <extension name="coverage">
         <pattern>
@@ -385,7 +111,55 @@
       </extension>
       <option name="PACKAGE_NAME" value="cn.ganwuwang.hospital" />
       <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.HospitalApplicationTests" />
-      <option name="METHOD_NAME" value="update" />
+      <option name="METHOD_NAME" value="different" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HospitalApplicationTests.getRedis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hospital" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.ganwuwang.hospital.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.ganwuwang.hospital" />
+      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.HospitalApplicationTests" />
+      <option name="METHOD_NAME" value="getRedis" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HospitalApplicationTests.probability" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hospital" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.ganwuwang.hospital.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.ganwuwang.hospital" />
+      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.HospitalApplicationTests" />
+      <option name="METHOD_NAME" value="probability" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HospitalApplicationTests.setRedis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hospital" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.ganwuwang.hospital.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.ganwuwang.hospital" />
+      <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.HospitalApplicationTests" />
+      <option name="METHOD_NAME" value="setRedis" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -400,11 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HospitalApplicationTests.redis" />
-        <item itemvalue="Application.TestMain" />
-        <item itemvalue="Application.TextUtils" />
-        <item itemvalue="Application.TextAnalysis" />
-        <item itemvalue="JUnit.HospitalApplicationTests.update" />
+        <item itemvalue="JUnit.HospitalApplicationTests.different" />
+        <item itemvalue="JUnit.HospitalApplicationTests.probability" />
+        <item itemvalue="JUnit.HospitalApplicationTests.cache" />
+        <item itemvalue="JUnit.HospitalApplicationTests.getRedis" />
+        <item itemvalue="JUnit.HospitalApplicationTests.setRedis" />
       </list>
     </recent_temporary>
   </component>
@@ -439,12 +213,34 @@
       <workItem from="1584271767111" duration="990000" />
       <workItem from="1584409285749" duration="7617000" />
       <workItem from="1584430239871" duration="10409000" />
-      <workItem from="1584444531090" duration="2985000" />
+      <workItem from="1584444531090" duration="3508000" />
+      <workItem from="1584495039399" duration="9249000" />
     </task>
+    <task id="LOCAL-00001" summary="智能分诊项目毕设">
+      <created>1584447595618</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584447595618</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -461,46 +257,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="418" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1584152804591" />
-    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1584447322848">
+    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1584504828048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584447322848" />
+    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584504828048" />
     <state x="549" y="156" key="FileChooserDialogImpl" timestamp="1584447240917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584447240917" />
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1584447271475">
+    <state width="1493" height="400" key="GridCell.Tab.0.bottom" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584447271475" />
-    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1584447271475">
+    <state width="1493" height="400" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.0.center" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584447271475" />
-    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1584447271475">
+    <state width="1493" height="400" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.0.left" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584447271475" />
-    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1584447271475">
+    <state width="1493" height="400" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.0.right" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584447271475" />
-    <state width="1493" height="372" key="GridCell.Tab.1.bottom" timestamp="1584446356271">
+    <state width="1493" height="400" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.1.bottom" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="372" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584446356271" />
-    <state width="1493" height="372" key="GridCell.Tab.1.center" timestamp="1584446356271">
+    <state width="1493" height="400" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.1.center" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="372" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584446356271" />
-    <state width="1493" height="372" key="GridCell.Tab.1.left" timestamp="1584446356271">
+    <state width="1493" height="400" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.1.left" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="372" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584446356271" />
-    <state width="1493" height="372" key="GridCell.Tab.1.right" timestamp="1584446356271">
+    <state width="1493" height="400" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
+    <state width="1493" height="400" key="GridCell.Tab.1.right" timestamp="1584504900516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="372" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584446356271" />
+    <state width="1493" height="400" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584504900516" />
     <state x="576" y="125" key="RollbackChangesDialog" timestamp="1584447432372">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -509,10 +305,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584413626659" />
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1584447395902">
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1584447972907">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584447395902" />
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584447972907" />
     <state x="323" y="151" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584438788633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -530,19 +326,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Probability.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserController.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

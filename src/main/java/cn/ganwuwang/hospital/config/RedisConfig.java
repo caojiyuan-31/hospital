@@ -1,4 +1,3 @@
-/*
 package cn.ganwuwang.hospital.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -23,28 +22,26 @@ import java.time.Duration;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
-    */
 /**
      * 选择redis作为默认缓存工具
      * @param redisConnectionFactory
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofHours(1)); // 设置缓存有效期一小时
+                .entryTtl(Duration.ofHours(24*31)); // 设置缓存有效期一个月
         return RedisCacheManager
                 .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
                 .cacheDefaults(redisCacheConfiguration).build();
     }
 
-    */
 /**
      * retemplate相关配置
      * @param factory
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
@@ -76,69 +73,63 @@ public class RedisConfig extends CachingConfigurerSupport {
         return template;
     }
 
-    */
 /**
      * 对hash类型的数据操作
      *
      * @param redisTemplate
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public HashOperations<String, String, Object> hashOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForHash();
     }
 
-    */
 /**
      * 对redis字符串类型数据操作
      *
      * @param redisTemplate
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForValue();
     }
 
-    */
 /**
      * 对链表类型的数据操作
      *
      * @param redisTemplate
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForList();
     }
 
-    */
 /**
      * 对无序集合类型的数据操作
      *
      * @param redisTemplate
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForSet();
     }
 
-    */
 /**
      * 对有序集合类型的数据操作
      *
      * @param redisTemplate
-     * @return
-     *//*
+     * @return*/
+
 
     @Bean
     public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForZSet();
     }
 }
-*/

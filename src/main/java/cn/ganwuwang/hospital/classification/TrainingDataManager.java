@@ -1,15 +1,20 @@
 package cn.ganwuwang.hospital.classification;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 
+@Component
 public class TrainingDataManager {
 
-    private String[] traningFileClassifications;//训练语料分类集合
-    private File traningTextDir;//训练语料存放目录
-    private static String defaultPath = "D:\\test\\data";
+    private String defaultPath = null;
+    private File traningTextDir = null;//训练语料存放目录
+    private String[] traningFileClassifications = null;//训练语料分类集合
 
     public TrainingDataManager()
     {
+        defaultPath = "D:\\test\\data";
         traningTextDir = new File(defaultPath);
         if (!traningTextDir.isDirectory())
         {
@@ -18,14 +23,13 @@ public class TrainingDataManager {
         this.traningFileClassifications = traningTextDir.list();
     }
 
-
     /**
      * 返回训练文本类别，这个类别就是目录名
      * @return 训练文本类别
      */
     public String[] getTraningClassifications()
     {
-        return this.traningFileClassifications;
+        return traningFileClassifications;
     }
     /**
      * 根据训练文本类别返回这个类别下的所有训练文本路径（full path）
@@ -67,6 +71,7 @@ public class TrainingDataManager {
      * 返回训练文本集中所有的文本数目
      * @return 训练文本集中所有的文本数目
      */
+    @Cacheable(cacheNames = {"FileCount"})
     public int getTrainingFileCount()
     {
         int ret = 0;
@@ -81,6 +86,7 @@ public class TrainingDataManager {
      * @param classification 给定的分类
      * @return 训练文本集中在给定分类下的训练文本数目
      */
+    @Cacheable(cacheNames = {"CountOfClassification"})
     public int getTrainingFileCountOfClassification(String classification)
     {
         File classDir = new File(traningTextDir.getPath() +File.separator +classification);
@@ -92,6 +98,7 @@ public class TrainingDataManager {
      * @param key 给定的关键词
      * @return 给定分类中包含关键词的训练文本的数目
      */
+    @Cacheable(cacheNames = {"CountContainKeyOfClassification"})
     public int getCountContainKeyOfClassification(String classification,String key)
     {
         int ret = 0;
@@ -124,6 +131,7 @@ public class TrainingDataManager {
      * @param key 给定的关键词
      * @return 包含关键词的训练文本的数目
      */
+    @Cacheable(cacheNames = {"CountContainKey"})
     public int getCountContainKey(String key)
     {
         int ret = 0;
