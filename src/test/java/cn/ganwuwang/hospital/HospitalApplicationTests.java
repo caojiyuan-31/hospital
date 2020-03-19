@@ -1,11 +1,9 @@
 package cn.ganwuwang.hospital;
 
-import cn.ganwuwang.hospital.classification.GetHtmlData;
-import cn.ganwuwang.hospital.classification.Probability;
-import cn.ganwuwang.hospital.classification.different;
+import cn.ganwuwang.hospital.controller.DataController;
 import cn.ganwuwang.hospital.controller.UserController;
+import cn.ganwuwang.hospital.dao.DepartmentDao;
 import cn.ganwuwang.hospital.dao.RoleDao;
-import cn.ganwuwang.hospital.domain.pojo.Data;
 import cn.ganwuwang.hospital.domain.pojo.Role;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.query.PageQuery;
@@ -17,19 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.List;
-
 @SpringBootTest
 class HospitalApplicationTests {
 
     @Autowired
     RoleDao roleDao;
-
-    @Autowired
-    Probability probability;
-
-    @Autowired
-    different different;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -40,19 +30,49 @@ class HospitalApplicationTests {
     @Autowired
     DataServiceImpl dataService;
 
+    @Autowired
+    DepartmentDao departmentDao;
+
+    @Autowired
+    DataController dataController;
+
     @Test
+    void test() throws GlobalException {
+        String text = "血压低打针心窝疼是怎么回事";
+        System.out.println(dataController.forecastCategory(text).getData());
+    }
+
+    /*@Test
     void data() throws GlobalException {
 
         StringBuffer sb = new StringBuffer();
+        String url = "/department/symptoms/44.html";
         Data d = new Data();
-        List<String> list = GetHtmlData.getZZForSymptoms("/department/symptoms/55.html");
+        d.setCategory("精神科");
+        List<String> list = GetHtmlData.getZZForSymptoms(url);
         for(String o : list){
-            sb.append(GetHtmlData.getChinese(o)+"，");
+            d.setText(GetHtmlData.getChinese(o));
+            dataService.save(d);
         }
-        d.setCategory("肿瘤科");
-        d.setText(sb.toString());
-        dataService.save(d);
 
+        List<String> listUrl = GetHtmlData.getAllPage(url);
+        for (String u : listUrl){
+            list = GetHtmlData.getZZForSymptoms(u);
+            for(String o : list){
+                d.setText(GetHtmlData.getChinese(o));
+                dataService.save(d);
+            }
+        }
+
+    }*/
+
+    @Test
+    void queryListByCategory() throws GlobalException {
+        //List<Data> data = dataService.queryListByCategory(null);
+        /*for(Data o : data){
+            System.out.println(o.getText());
+        }*/
+        System.out.println(dataService.queryTotalByCategory(null));
     }
 
     @Test
@@ -60,16 +80,6 @@ class HospitalApplicationTests {
         System.out.println(userController.getInfo(new Long(2)));
     }
 
-    @Test
-    void probability() {
-        System.out.println(probability.classify("明天三里屯见瑞丽服饰美容：2011瑞丽造型大赏派对瑞丽专属模特黄美熙康猴猴康乐帕丽扎提也会参加哦瑞丽专属模特转发(53)评论(5)12月8日17:10来自新浪微博"));
-    }
-
-    @Test
-    void different() throws Exception {
-        different.differentCount();
-        //System.out.println(different.differentOfClassification("校园"));
-    }
 
     @Test
     void setRedis() {

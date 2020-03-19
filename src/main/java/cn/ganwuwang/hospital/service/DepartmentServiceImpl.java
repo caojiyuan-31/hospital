@@ -19,6 +19,23 @@ public class DepartmentServiceImpl {
     @Autowired
     private DepartmentDao departmentDao;
 
+    public List<Department> getList() throws GlobalException {
+
+        List<Department> result = null;
+        Page p = new Page(1,1000);
+        PageQuery query = new PageQuery(new Department());
+        query.setPage(p);
+
+        try{
+            result = departmentDao.queryList(query);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return result;
+    }
+
     public List<Department> queryPageList(Page page, List<Sort> sort, Department department) throws GlobalException {
 
         List<Department> result = null;

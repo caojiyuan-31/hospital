@@ -17,6 +17,34 @@ public class DataServiceImpl {
     @Autowired
     private DataDao dataDao;
 
+    public List<Data> queryListByCategory(String category) throws GlobalException {
+
+        List<Data> result = null;
+
+        try{
+            result = dataDao.queryListByCategory(category);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return result;
+    }
+
+    public Integer queryTotalByCategory(String category) throws GlobalException {
+
+        Integer result = 0;
+
+        try{
+            result = dataDao.queryTotalByCategory(category);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return result;
+    }
+
     public List<Data> queryPageList(Page page, Data data) throws GlobalException {
 
         List<Data> result = null;
