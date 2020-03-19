@@ -1,5 +1,6 @@
 package cn.ganwuwang.hospital;
 
+import cn.ganwuwang.hospital.classification.Different;
 import cn.ganwuwang.hospital.controller.DataController;
 import cn.ganwuwang.hospital.controller.UserController;
 import cn.ganwuwang.hospital.dao.DepartmentDao;
@@ -36,10 +37,15 @@ class HospitalApplicationTests {
     @Autowired
     DataController dataController;
 
+    @Autowired
+    Different different;
+
     @Test
     void test() throws GlobalException {
-        String text = "血压低打针心窝疼是怎么回事";
-        System.out.println(dataController.forecastCategory(text).getData());
+        /*String text = "血压低打针心窝疼是怎么回事";
+        System.out.println(dataController.forecastCategory(text).getData());*/
+        //different.differentCountOfCategory("内科");
+        different.differentCount();
     }
 
     /*@Test

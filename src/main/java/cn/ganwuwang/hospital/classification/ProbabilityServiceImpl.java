@@ -2,6 +2,7 @@ package cn.ganwuwang.hospital.classification;
 
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class ProbabilityServiceImpl {
      * @param c 给定的分类
      * @return 给定条件下的先验概率
      */
+    @Cacheable(cacheNames = {"pc"})
     public float calculatePc(String c) throws GlobalException {
         float ret = 0F;
         float Nc = dm.getDataCountOfCategory(c);
@@ -32,7 +34,8 @@ public class ProbabilityServiceImpl {
      * @param c 给定的分类
      * @return 关键词与指定分类的关联程度
      */
-    public float calculatePxx(String x, String c) throws GlobalException {
+    @Cacheable(cacheNames = {"px"})
+    public float calculatePx(String x, String c) throws GlobalException {
         float ret = 0F;
         float N = dm.getCountContainKey(x);
         float Nxc = dm.getCountContainKeyOfCategory(c,x);
@@ -46,6 +49,7 @@ public class ProbabilityServiceImpl {
      * @param c 给定的分类
      * @return 给定条件下的类条件概率
      */
+    @Cacheable(cacheNames = {"pxc"})
     public float calculatePxc(String x, String c) throws GlobalException {
         float ret = 0F;
         float Nxc = dm.getCountContainKeyOfCategory(c, x);

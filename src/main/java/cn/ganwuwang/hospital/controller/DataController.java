@@ -51,10 +51,9 @@ public class DataController {
         for (int i = 0; i <X.length; i++)
         {
             String Xi = X[i];
-            //因为结果过小，因此在连乘之前放大10倍，这对最终结果并无影响，因为我们只是比较概率大小而已
-            //ret *= (calculatePxc(Xi, Cj) / calculatePx(Xi));
-            ret *= probabilityService.calculatePxc(Xi, Cj)*100 * probabilityService.calculatePxx(Xi, Cj);
-            //System.out.println(Xi+"当前概率为"+ret);
+            //因为结果过小，因此在连乘之前放大100倍，这对最终结果并无影响，因为我们只是比较概率大小而已
+            ret *= probabilityService.calculatePxc(Xi, Cj)*100 * probabilityService.calculatePx(Xi, Cj);
+
         }
         // 再乘以先验概率
         ret *= probabilityService.calculatePc(Cj);
