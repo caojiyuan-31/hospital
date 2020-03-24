@@ -11,6 +11,7 @@ public class User implements Serializable {
     private String password;
     private String url;
     private Long phone;
+    private String name;
     private String email;
     private String identity;
     private Boolean deleteFlag;
@@ -57,6 +58,14 @@ public class User implements Serializable {
 
     public void setPhone(Long phone) {
         this.phone = phone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

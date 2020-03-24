@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2abf5e7b-575e-4120-acb2-a6511e921dbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/Different.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/ProbabilityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/classification/ProbabilityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/ganwuwang/hospital/HospitalApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/ganwuwang/hospital/HospitalApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/cn/ganwuwang/hospital/HospitalApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/ganwuwang/hospital/HospitalApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +89,7 @@
       <recent name="D:\workspace\hospital\src\main\java\cn\ganwuwang\hospital\domain\query" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HospitalApplicationTests.test">
+  <component name="RunManager" selected="Spring Boot.HospitalApplication">
     <configuration name="GetHtmlData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.ganwuwang.hospital.classification.GetHtmlData" />
       <module name="hospital" />
@@ -213,7 +218,12 @@
       <workItem from="1584444531090" duration="3508000" />
       <workItem from="1584495039399" duration="9559000" />
       <workItem from="1584513051344" duration="13490000" />
-      <workItem from="1584581447697" duration="15184000" />
+      <workItem from="1584581447697" duration="15386000" />
+      <workItem from="1584678174859" duration="311000" />
+      <workItem from="1584678541476" duration="2221000" />
+      <workItem from="1584680815482" duration="3104000" />
+      <workItem from="1584685112158" duration="3121000" />
+      <workItem from="1585019373372" duration="9262000" />
     </task>
     <task id="LOCAL-00001" summary="智能分诊项目毕设">
       <created>1584447595618</created>
@@ -243,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584605980410</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="智能分诊功能对比测试">
+      <created>1584612677216</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1584612677216</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,17 +286,18 @@
     <MESSAGE value="添加redis缓存,修改算法" />
     <MESSAGE value="爬取数据，并新增算法data结构" />
     <MESSAGE value="智能分诊功能具体实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="智能分诊功能具体实现" />
+    <MESSAGE value="智能分诊功能对比测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="智能分诊功能对比测试" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="105" key="#com.intellij.ide.util.MemberChooser" timestamp="1584602187749">
+    <state x="574" y="105" key="#com.intellij.ide.util.MemberChooser" timestamp="1585019611001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="105" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1584602187749" />
-    <state x="418" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584152804591">
+    <state x="574" y="105" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585019611001" />
+    <state x="418" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584683385919">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1584152804591" />
+    <state x="418" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1584683385919" />
     <state x="450" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584604219643">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -288,46 +306,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1584605055714" />
-    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1584605977457">
+    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1584612674888">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584605977457" />
+    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584612674888" />
     <state x="549" y="156" key="FileChooserDialogImpl" timestamp="1584447240917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584447240917" />
-    <state width="1493" height="311" key="GridCell.Tab.0.bottom" timestamp="1584612645977">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="311" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584612645977" />
-    <state width="1493" height="311" key="GridCell.Tab.0.center" timestamp="1584612645977">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
+    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1585028930743">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="311" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584612645977" />
-    <state width="1493" height="311" key="GridCell.Tab.0.left" timestamp="1584612645977">
+    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585028930743" />
+    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1585028930743">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="311" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584612645977" />
-    <state width="1493" height="311" key="GridCell.Tab.0.right" timestamp="1584612645977">
+    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585028930743" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="311" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584612645977" />
-    <state width="1493" height="439" key="GridCell.Tab.1.bottom" timestamp="1584605338969">
+    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
+    <state width="1493" height="223" key="GridCell.Tab.1.bottom" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="439" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584605338969" />
-    <state width="1493" height="439" key="GridCell.Tab.1.center" timestamp="1584605338969">
+    <state width="1493" height="223" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
+    <state width="1493" height="223" key="GridCell.Tab.1.center" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="439" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584605338969" />
-    <state width="1493" height="439" key="GridCell.Tab.1.left" timestamp="1584605338969">
+    <state width="1493" height="223" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
+    <state width="1493" height="223" key="GridCell.Tab.1.left" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="439" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584605338969" />
-    <state width="1493" height="439" key="GridCell.Tab.1.right" timestamp="1584605338969">
+    <state width="1493" height="223" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
+    <state width="1493" height="223" key="GridCell.Tab.1.right" timestamp="1585028930744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="439" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584605338969" />
+    <state width="1493" height="223" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585028930744" />
     <state x="576" y="125" key="RollbackChangesDialog" timestamp="1584447432372">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -336,10 +354,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584413626659" />
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1584605997393">
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1584612678450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584605997393" />
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584612678450" />
     <state x="323" y="151" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584438788633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -348,20 +366,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="457" y="167" width="905" height="490" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1584174080124" />
+    <state x="114" y="120" key="new project wizard" timestamp="1584680764975">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="114" y="120" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1584680764975" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1584191334286">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1584191334286" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserController.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

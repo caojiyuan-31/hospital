@@ -137,6 +137,7 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        System.out.println("++++++++++++++++++++++++++"+username);
         LoadUser loadUser = new LoadUser();
         User user = userDao.queryObjectByUserName(username);
         if(user == null){

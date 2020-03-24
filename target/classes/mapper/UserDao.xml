@@ -9,6 +9,7 @@
         <id column="password" property="password" jdbcType="VARCHAR" />
         <id column="url" property="url" jdbcType="VARCHAR" />
         <id column="phone" property="phone" jdbcType="BIGINT" />
+        <id column="name" property="name" jdbcType="VARCHAR" />
         <id column="email" property="email" jdbcType="VARCHAR" />
         <id column="identity" property="identity" jdbcType="VARCHAR" />
         <id column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
@@ -25,6 +26,7 @@
             <if test="query.password != null and query.password != '' "> and `password` = #{query.password}</if>
             <if test="query.url != null and query.url != '' "> and `url` = #{query.url}</if>
             <if test="query.phone != null"> and `phone` = #{query.phone}</if>
+            <if test="query.name != null and query.name != '' "> and `name` = #{query.name}</if>
             <if test="query.email != null and query.email != '' "> and `email` = #{query.email}</if>
             <if test="query.identity != null and query.identity != '' "> and `identity` = #{query.identity}</if>
             <if test="query.deleteFlag != null"> and `delete_flag` = #{query.deleteFlag}</if>
@@ -35,7 +37,7 @@
         </if>
     </sql>
     <sql id="Base_Column_List">
-		id,username,password,url,phone,email,identity,delete_flag,created_time,modified_time,created_user,modified_user
+		id,username,password,url,phone,name,email,identity,delete_flag,created_time,modified_time,created_user,modified_user
 	</sql>
 
     <select id="queryObject" resultMap="BaseResultMap">
@@ -70,9 +72,9 @@
 
     <insert id="save" parameterType="cn.ganwuwang.hospital.domain.pojo.User" useGeneratedKeys="true" keyProperty="id">
 		insert into user
-		  (`username`,`password`,`url`,`phone`,`email`,`identity`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
+		  (`username`,`password`,`url`,`phone`,`name`,`email`,`identity`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
 		values
-		  (#{username},#{password},#{url},#{phone},#{email},#{identity},#{deleteFlag},now(),now(),#{createdUser},#{modifiedUser})
+		  (#{username},#{password},#{url},#{phone},#{name},#{email},#{identity},#{deleteFlag},now(),now(),#{createdUser},#{modifiedUser})
 	</insert>
 
     <update id="update" parameterType="cn.ganwuwang.hospital.domain.pojo.User">
@@ -82,6 +84,7 @@
             <if test="password != null">`password` = #{password},</if>
             <if test="url != null">`url` = #{url},</if>
             <if test="phone != null">`phone` = #{phone},</if>
+            <if test="name != null">`name` = #{name},</if>
             <if test="email != null">`email` = #{email},</if>
             <if test="identity != null">`identity` = #{identity},</if>
             <if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
