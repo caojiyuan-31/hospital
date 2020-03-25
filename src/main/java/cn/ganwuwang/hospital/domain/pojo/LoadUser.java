@@ -67,4 +67,32 @@ public class LoadUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;//地址相等
+        }
+
+        if(obj == null){
+            return false;//非空性：对于任意非空引用x，x.equals(null)应该返回false。
+        }
+
+        if(obj instanceof LoadUser){
+            LoadUser other = (LoadUser) obj;
+            //需要比较的字段相等，则这两个对象相等
+            if(this.username.equals(other.getUsername())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (username == null ? 0 : username.hashCode());
+        return result;
+    }
 }

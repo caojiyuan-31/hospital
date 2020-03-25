@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             PrintWriter out = response.getWriter();
             Result result = new Result(ResultEnum.LOAD_ERROR);
             result.setMsg(exception.getMessage());
-            out.write(GsonUtils.toJson(new Result(result)));
+            out.write(GsonUtils.toJson(result));
             out.flush();
             out.close();
         }
