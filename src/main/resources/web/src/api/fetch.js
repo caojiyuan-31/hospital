@@ -3,13 +3,8 @@ import axios from '../http';
 
 const headers = {
   'Content-Type': 'application/json',
-  // 这里有一个很玄学的问题
-  token: localStorage.getItem('token'),
+  // 'Content-Type': 'application/x-www-form-urlencoded',
 };
-
-// const headers = {
-//   'Content-Type': 'application/x-www-from-urlencoded',
-// };
 
 export default {
   getPerson() {
@@ -21,31 +16,40 @@ export default {
   getMovieInfo(id) {
     return axios.get(api.getMovieInfo(), { params: { movieId: id } }, { headers });
   },
-  userRegister(info) {
-    return axios.post(api.userRegister(), JSON.stringify(info), { headers });
+  userRegister(user, check) {
+    return axios.post(api.userRegister(), { user, check }, { headers });
   },
+
   movieTags() {
     return axios.get(api.getMovieTag(), { headers });
   },
   userLogin(info) {
     const formData = new FormData();
-      formData.append('username', info.username);
-      formData.append('password', info.password);
+    formData.append('username', info.username);
+    formData.append('password', info.password);
     return axios.post(api.userLogin(), formData);
   },
-  getUserInfo(info) {
-    return axios.get(api.getUserInfo(), { params: { token: info } }, { headers });
+
+  getSelfInfo() {
+    return axios.get(api.getSelfInfo());
   },
-  sendCode(phone) {
-    return axios.get(api.sendCode(), { params: { phone } }, { headers });
+
+  sendCheck(to) {
+    return axios.post(api.sendCheck(), to, { headers });
   },
+
   logout() {
     return axios.post(api.logout());
   },
-  putUserInfo(userInfo) {
-    headers.token = localStorage.getItem('token');
-    return axios.post(api.putUserInfo(), JSON.stringify(userInfo), { headers });
+
+  putSelfInfo(userInfo) {
+    return axios.post(api.putSelfInfo(), userInfo, { headers });
   },
+
+  putSelfOther(user, check) {
+    return axios.post(api.putSelfOther(), { user, check }, { headers });
+  },
+
   changePhone(phone) {
     return axios.put(api.changePhone(), JSON.stringify(phone), { headers });
   },

@@ -1,29 +1,18 @@
 <template>
   <div>
     <div class="wrapper">
-      <el-card class="box-card">
-        <div>
-          <el-upload
-            class="avatar-uploader"
-            action="http://movie.pqdong.com:10015/user/avatar"
-            name="avatar"
-            :headers="head"
-            :data="{'userMd': this.list.userMd}"
-            :show-file-list="false"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl"  class="avatar">
-            <img v-else class="img" :src="setDefault">
-          </el-upload>
-          <span class="username">{{list ? list.username : ''}}</span>
-        </div>
-      </el-card>
-      <el-tabs type="border-card" tabPosition="left"
+      <el-tabs type="border-card" tabPosition="left" v-model="activeName"
                style="width:1000px;height: 100vh;margin: 14px auto auto auto;position: sticky">
-        <el-tab-pane>
-          <span slot="label">个人信息<i class="el-icon-arrow-right"></i></span>
-          <user :list="list" :imageUrl="imageUrl" class="user"></user>
+
+        <el-tab-pane
+          v-for="(item) in editableTabs"
+          :key="item.name"
+          :label="item.title"
+          :name="item.name"
+        >
+          <component :is=item.content></component>
         </el-tab-pane>
+
       </el-tabs>
     </div>
   </div>
@@ -31,40 +20,35 @@
 
 <script>/* eslint-disable indent */
 
-import fetch from '../api/fetch';
-import Info from '../components/userInfo';
+import UserInfo from '../components/userInfo';
+import UserInfo2 from '../components/userInfo2';
+import UserInfo3 from '../components/userInfo3';
 
 export default {
   data() {
     return {
+      activeName: '',
+      editableTabs: [{
+        title: '个人信息',
+        name: '1',
+        content: 'UserInfo',
+      }, {
+        title: '修改邮箱',
+        name: '2',
+        content: 'UserInfo2',
+      }, {
+        title: '修改密码',
+        name: '3',
+        content: 'UserInfo3',
+      }],
       activeIndex2: '1',
       btnText: '取消',
-      list: {
-        username: '',
-        sex: '',
-        phone: '',
-        userTags: [],
-        userMd: '',
-        userAvatar: '',
-        motto: '',
-      },
-      imageUrl: '',
-      head: {
-        token: localStorage.getItem('token'),
-      },
       refresh: 0,
     };
   },
-  computed: {
-    setDefault() {
-      if (this.list.userAvatar != null) {
-        return this.list.userAvatar;
-      }
-      return 'http://oimagec6.ydstatic.com/image?id=-4541055657611236390&product=bisheng';
-    },
-  },
   mounted() {
-    this.getUserInfo();
+    // this.getUserInfo();
+    this.activeName = this.editableTabs[0].name;
     this.refresh = this.$route.params.refresh !== undefined ? this.$route.params.refresh : 0;
   },
   watch: {
@@ -73,45 +57,12 @@ export default {
     },
   },
   components: {
-    user: Info,
+    UserInfo,
+    UserInfo2,
+    UserInfo3,
   },
   methods: {
-    getUserInfo() {
-      fetch
-        .getUserInfo(localStorage.getItem('token'))
-        .then((res) => {
-          if (res.data.code === 0) {
-            this.list = res.data.data !== null ? res.data.data : this.list;
-            this.list.userTags = JSON.parse(this.list.userTags);
-          } else {
-            this.$message({
-              type: 'warning',
-              message: res.data.description,
-            });
-          }
-        })
-        .catch((err) => {
-          this.$message({
-            type: 'error',
-            message: err,
-          });
-        });
-    },
-    handleAvatarSuccess(res) {
-      this.imageUrl = res.data;
-    },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
-      const isLt2M = file.size / 1024 / 1024 < 2;
 
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
-      }
-      return isJPG && isLt2M;
-    },
   },
 };
 </script>

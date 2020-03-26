@@ -3,13 +3,13 @@ const localhost = 'http://localhost:8080';
 
 export default {
   userRegister() {
-    return `${host}/user/register`;
+    return `${localhost}/user/save`;
   },
   userLogin() {
     return `${localhost}/login`;
   },
-  getUserInfo() {
-    return `${host}/user/userInfo`;
+  getSelfInfo() {
+    return `${localhost}/user/getSelfInfo`;
   },
   getMovie() {
     return `${host}/movie/list`;
@@ -23,15 +23,19 @@ export default {
   getMovieTag() {
     return `${host}/movie/tag`;
   },
-  sendCode() {
-    return `${host}/user/code`;
+  sendCheck() {
+    return `${localhost}/user/sendCheckMail`;
   },
   logout() {
     return `${localhost}/logout`;
   },
   // 提交用户信息
-  putUserInfo() {
-    return `${host}/user/userInfo`;
+  putSelfInfo() {
+    return `${localhost}/user/updateSelf`;
+  },
+  // 提交用户信息
+  putSelfOther() {
+    return `${localhost}/user/updateOther`;
   },
   // 修改用户手机号码
   changePhone() {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="loginTableForm">
-      <div class="division" @click="backIndex"><h3>用户登录</h3>
+      <div class="division"><h3>用户登录</h3>
       <h3 style="color: #888;font-weight: 400">--- LOGIN ---</h3></div>
       <el-form :model="loginInfo" status-icon :rules="rules2" ref="loginInfo" label-width="100px" class="loginForm">
         <el-form-item prop="username">
@@ -106,6 +106,10 @@ export default {
 
 <style>
   @import "../assets/Animate/animate.min.css";
+
+  .division{
+    margin : 20px 0px 10px 0px;
+  }
 
   body {
     padding: 0;

@@ -80,6 +80,21 @@ public class UserServiceImpl implements UserDetailsService {
         return result;
     }
 
+    public Boolean checkSelf(Long id) throws GlobalException {
+
+        User result = null;
+        try{
+            result = userDao.queryObject(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+        if(result.getPhone() == null || CheckUtils.isEmptyBatch(result.getIdentity(), result.getName())){
+            return false;
+        }
+        return true;
+    }
+
     @Transactional(rollbackFor = {RuntimeException.class, Error.class})
     public void save(User user) throws GlobalException {
 

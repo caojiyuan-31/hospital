@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result loadErrorHandler(UsernameNotFoundException e){
 
+        e.printStackTrace();
         Result result = new Result(ResultEnum.LOAD_ERROR);
         result.setMsg(e.getMessage());
         return result;
@@ -33,6 +34,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result errorHandler(Exception e){
 
+        e.printStackTrace();
         return new Result(ResultEnum.ERROR);
 
     }

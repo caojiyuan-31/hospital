@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <div class="registerForm">
+      <div class="division"><h3>用户注册</h3>
+      <h3 style="color: #888;font-weight: 400">--- REGISTER ---</h3></div>
       <el-form :model="registerInfo" status-icon :rules="registerrules" ref="registerInfo" label-width="100px"
                class="registerRuleForm">
         <el-form-item prop="username">
@@ -12,13 +14,13 @@
         <el-form-item prop="checkPass">
           <el-input type="password" v-model="registerInfo.checkPass" auto-complete="off" placeholder="确认密码"></el-input>
         </el-form-item>
-        <el-form-item prop="phone">
-          <el-input v-model.number="registerInfo.phone" placeholder="手机号"></el-input>
+         <el-form-item prop="email">
+          <el-input type="text" v-model="registerInfo.email" auto-complete="off" placeholder="邮箱"></el-input>
         </el-form-item>
-        <el-form-item prop="code">
-          <el-input v-model.number="registerInfo.code" style="width: 270px;padding-right: 10px;"
+        <el-form-item prop="check">
+          <el-input v-model.number="registerInfo.check" style="width: 270px;padding-right: 10px;"
                     placeholder="验证码"></el-input>
-          <el-button @click="sendCode">{{this.msg}}</el-button>
+          <el-button :disabled="isAble" @click="sendCode">{{this.msg}}</el-button>
         </el-form-item>
 
           <el-form-item>
@@ -39,18 +41,18 @@ import fetch from '../api/fetch';
 export default {
   data() {
     // eslint-disable-next-line consistent-return
-    const checkCode = (rule, value, callback) => {
+    const checkCheck = (rule, value, callback) => {
       if (!value) {
         return callback(new Error('请输入验证码'));
       }
       callback();
     };
     // eslint-disable-next-line consistent-return
-    const checkPhone = (rule, value, callback) => {
+    const checkEmail = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('请输入手机号'));
-      } else if (!/^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(value)) {
-        return callback(new Error('请输入正确的手机号'));
+        return callback(new Error('请输入邮箱'));
+      } else if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)) {
+        return callback(new Error('请输入正确的邮箱'));
       }
       callback();
     };
@@ -83,58 +85,33 @@ export default {
       }
     };
     return {
-      imageUrl: '',
       msg: '发送验证码',
       count: '',
       timer: null,
+      isAble: false,
       show: true,
-      confirmCode: '',
-      options: [],
-      tags: [],
-      dialogShow: false,
-      tipsShow: false,
-      formLabelWidth: '120px',
       registerInfo: {
         password: '',
         checkPass: '',
-        phone: '',
+        email: '',
         username: '',
-        code: '',
-        tags: [],
+        check: '',
       },
       registerrules: {
-        code: [{ validator: checkCode, trigger: 'blur' }],
+        check: [{ validator: checkCheck, trigger: 'blur' }],
         username: [{ validator: validUsername, trigger: 'blur' }],
         password: [{ validator: validatePass, trigger: 'blur' }],
         checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-        phone: [{ validator: checkPhone, trigger: 'blur' }],
+        email: [{ validator: checkEmail, trigger: 'blur' }],
       },
     };
   },
 
   mounted() {
-    this.getUserTags();
     this.addAnimation();
   },
 
   methods: {
-    handleAvatarSuccess(res) {
-        this.imageUrl = res.data;
-      },
-
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-      },
-
     addAnimation() {
       const form = document.getElementsByClassName('registerForm')[0];
       form.classList.add('animated');
@@ -143,15 +120,20 @@ export default {
 
     sendCode() {
       const TIME_COUNT = 60;
-      if (!/^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(this.registerInfo.phone)) return;
+      if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.registerInfo.email)) return;
       fetch
-        .sendCode(this.registerInfo.phone)
+        .sendCheck(this.registerInfo.email)
         .then((res) => {
           if (res.status === 200) {
-            if (res.data.code === 0) {
+            if (res.data.code === "00000") {
               this.$message({
                 message: '发送成功',
                 type: 'success',
+              });
+            } else {
+              this.$message({
+                message: res.data.msg,
+                type: 'warning',
               });
             }
           }
@@ -162,15 +144,18 @@ export default {
       if (!this.timer) {
         this.count = TIME_COUNT;
         this.show = false;
+        this.isAble = true;
         this.timer = setInterval(() => {
           if (this.count > 0 && this.count <= TIME_COUNT) {
             // eslint-disable-next-line no-plusplus
             this.count--;
             this.msg = `${this.count}s后发送`;
             if (this.count === 0) {
+              this.isAble = false;
               this.msg = '发送验证码';
             }
           } else {
+            this.isAble = false;
             this.show = true;
             clearInterval(this.timer);
             this.timer = null;
@@ -181,20 +166,18 @@ export default {
 
     registerSubmit(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid && !this.tipsShow) {
-          const result = {
+        if (valid) {
+          const user = {
             password: this.registerInfo.password,
-            phone: this.registerInfo.phone,
+            email: this.registerInfo.email,
             username: this.registerInfo.username,
-            code: this.registerInfo.code,
-            userTags: JSON.stringify(this.registerInfo.tags),
           };
           // 用户注册
           fetch
-            .userRegister(result)
+            .userRegister(user, this.registerInfo.check)
             .then((res) => {
               if (res.status === 200) {
-                if (res.data.code === 0) {
+                if (res.data.code === "00000") {
                   this.$message({
                     message: '注册成功',
                     type: 'success',
@@ -202,7 +185,7 @@ export default {
                   this.$router.push({ name: 'login' });
                 } else {
                   this.$message({
-                    message: res.data.description,
+                    message: res.data.msg,
                     type: 'warning',
                   });
                 }
@@ -220,30 +203,6 @@ export default {
     },
     toLogin() {
       this.$router.push({ name: 'login' });
-    },
-
-    getUserTags() {
-      fetch
-        .movieTags()
-        .then((res) => {
-          if (res.status === 200) {
-            if (res.data.code === 0) {
-              this.tags = res.data.data;
-            } else {
-              this.$message({
-                message: res.data.msg,
-                type: 'warning',
-              });
-            }
-          }
-        })
-        // eslint-disable-next-line no-unused-vars
-        .catch((e) => {
-          this.$message({
-            message: '获取标签失败',
-            type: 'warning',
-          });
-        });
     },
   },
 };

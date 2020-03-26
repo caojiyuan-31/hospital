@@ -93,7 +93,7 @@
     </update>
 
     <select id="getListByUid" resultMap="BaseResultMap">
-        select * from role r, user u, user_role ur where r.id = ur.role_id and ur.user_id = #{uid}
+        select * from role r, user u, user_role ur where r.id = ur.role_id and u.id = ur.user_id and ur.user_id = #{uid}
     </select>
 
 </mapper>

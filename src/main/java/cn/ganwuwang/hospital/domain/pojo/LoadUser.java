@@ -13,12 +13,14 @@ public class LoadUser implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private List<Role> roles;
 
     public void setUser(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
+        this.email = user.getEmail();
     }
 
     public void setRoles(List<Role> roles) {
@@ -32,6 +34,10 @@ public class LoadUser implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authorities;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public Long getId() {

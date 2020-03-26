@@ -2,69 +2,35 @@
   <div>
     <table v-if="!isEdit" class="container">
       <tr>
-        <td>昵称：</td>
-        <td>{{list.username}}</td>
+        <td>姓名：</td>
+        <td>{{user.name}}</td>
       </tr>
       <tr>
-        <td>性别：</td>
-        <td>{{list.sex}}</td>
+        <td>身份证号：</td>
+        <td>{{user.identity}}</td>
       </tr>
       <tr>
         <td>手机号：</td>
-        <td>{{list.phone}}</td>
-      </tr>
-      <tr>
-        <td>电影标签：</td>
-        <td>
-          <div>
-            <span v-for="n in list.userTags">
-              <el-button class="editt">{{n}}</el-button>
-              <span>&ensp;</span>
-            </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>个人宣言：</td>
-        <td>{{list.motto}}</td>
-      </tr>
-      <tr>
-        <td>ID：</td>
-        <td>{{list.userMd}}</td>
+        <td>{{user.phone}}</td>
       </tr>
       <tr>
         <td></td>
       </tr>
     </table>
-    <el-form :model="list" status-icon :rules="rules2" ref="list" label-width="100px" class="formWrap"
+    <el-form :model="user" status-icon :rules="rules2" ref="putSelfInfo" label-width="100px" class="formWrap"
              v-if="isEdit">
-        <el-form-item label="昵称" prop="username" style="text-align: right">
-        <el-input v-model="list.username" auto-complete="off"></el-input>
+        <el-form-item label="姓名" prop="name" style="text-align: right">
+        <el-input v-model="user.name" auto-complete="off"></el-input>
       </el-form-item>
-      <el-form-item label="标签" prop="userTags" style="text-align: right">
-        <div class="mutli">
-          <!--          <template v-for="prop in tags">-->
-          <dd v-for="op in tags" class="mutli">
-            <input type="checkbox" :value="op" v-model="userTags">{{op}}
-          </dd>
-        </div>
+      <el-form-item label="身份证号" prop="identity" style="text-align: right">
+        <el-input v-model="user.identity" auto-complete="off"></el-input>
       </el-form-item>
-      <span>
-        <el-form-item label="个人宣言" prop="motto" style="text-align: right">
-        <el-input v-model="list.motto" auto-complete="off"></el-input>
+      <el-form-item label="手机号" prop="phone" style="text-align: right">
+        <el-input v-model="user.phone" auto-complete="off"></el-input>
       </el-form-item>
-      </span>
-      <span>
-        <el-form-item label="性别" prop="sex" style="text-align: right">
-        <el-select v-model="list.sex" placeholder="请选择性别" style="width: 100%">
-          <el-option label="男" value="男"></el-option>
-          <el-option label="女" value="女"></el-option>
-        </el-select>
-      </el-form-item>
-      </span>
       <el-form-item>
         <el-button class='editor' @click="backToView">返回</el-button>
-        <el-button @click="submitInfo('list')">提交</el-button>
+        <el-button @click="submitInfo('putSelfInfo')">提交</el-button>
       </el-form-item>
     </el-form>
     <div>
@@ -73,6 +39,128 @@
     </div>
   </div>
 </template>
+
+<script>/* eslint-disable indent */
+
+import fetch from '../api/fetch';
+
+export default {
+  data() {
+    const checkName = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入姓名'));
+      } else if (!/^([\u4E00-\u9FFF]|\w){2,11}$/.test(value)) {
+        return callback(new Error('请输入正确的姓名'));
+      }
+      callback();
+    };
+    const checkIdentity = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入身份证号'));
+      } else if (!/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(value)) {
+        return callback(new Error('请输入正确的身份证号'));
+      }
+      callback();
+    };
+    const checkPhone = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入手机号'));
+      } else if (!/^(\+86)?1[3456789]\d{9}$/.test(value)) {
+        return callback(new Error('请输入正确的手机号'));
+      }
+      callback();
+    };
+    return {
+      user: {
+        name: '',
+        url: '',
+        phone: '',
+        identity: '',
+      },
+      refresh: 0,
+      isEdit: false,
+      rules2: {
+        name: [{ validator: checkName, trigger: 'blur' }],
+        identity: [{ validator: checkIdentity, trigger: 'blur' }],
+        phone: [{ validator: checkPhone, trigger: 'blur' }],
+      },
+    };
+  },
+  mounted() {
+    this.getSelfInfo();
+  },
+  watch: {
+    refresh() {
+      location.reload();
+    },
+  },
+  methods: {
+    changeEdit() {
+      this.isEdit = !this.isEdit;
+    },
+    backToView() {
+      this.isEdit = !this.isEdit;
+    },
+    toIndex() {
+      this.$router.push({ name: 'index' });
+    },
+    getSelfInfo() {
+      fetch
+        .getSelfInfo()
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.user.name = res.data.data.name;
+            this.user.identity = res.data.data.identity;
+            this.user.phone = res.data.data.phone;
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data.msg,
+            });
+          }
+        })
+        .catch((err) => {
+          this.$message({
+            type: 'error',
+            message: err,
+          });
+        });
+    },
+
+    submitInfo(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          fetch
+            .putSelfInfo(this.user)
+            .then((res) => {
+              if (res.data.code === '00000') {
+                this.backToView();
+                this.$message({
+                  message: '保存成功',
+                  type: 'success',
+                });
+              } else {
+                this.$message({
+                  message: res.data.msg,
+                  type: 'error',
+                });
+              }
+            })
+            .catch((e) => {
+              this.$message({
+                message: e,
+                type: 'error',
+              });
+            });
+        } else {
+          console.log('error submit!!');
+        }
+      });
+    },
+  },
+};
+</script>
+
 
 <style>
   table {
@@ -122,112 +210,3 @@
 
 </style>
 
-<script>/* eslint-disable indent */
-
-import fetch from '../api/fetch';
-
-export default {
-  props: ['list', 'imageUrl'],
-  data() {
-    const checknickname = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('昵称不能为空'));
-      }
-      callback();
-    };
-    const checksex = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('性别不能为空'));
-      }
-      callback();
-    };
-    return {
-      refresh: 0,
-      tags: [],
-      userTags: [],
-      isEdit: false,
-      rules2: {
-        username: [{ validator: checknickname, trigger: 'blur' }],
-        sex: [{ validator: checksex, trigger: 'blur' }],
-      },
-    };
-  },
-  mounted() {
-    this.getUserTags();
-  },
-  watch: {
-    refresh() {
-      location.reload();
-    },
-  },
-  methods: {
-    getUserTags() {
-      fetch
-        .movieTags()
-        .then((res) => {
-          if (res.status === 200) {
-            if (res.data.code === 0) {
-              this.tags = res.data.data;
-            } else {
-              this.$message({
-                message: res.data.msg,
-                type: 'warning',
-              });
-            }
-          }
-        })
-        // eslint-disable-next-line no-unused-vars
-        .catch((e) => {
-          this.$message({
-            message: '获取标签失败',
-            type: 'warning',
-          });
-        });
-    },
-    changeEdit() {
-      this.isEdit = !this.isEdit;
-    },
-    backToView() {
-      this.isEdit = !this.isEdit;
-      this.list.userTags = JSON.parse(this.list.userTags);
-    },
-    toIndex() {
-      this.$router.push({ name: 'index' });
-    },
-    // 提交订单信息
-    submitInfo(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          console.log(this.userTags);
-          this.list.userTags = JSON.stringify(this.userTags);
-          console.log(this.list);
-          fetch
-            .putUserInfo(this.list)
-            .then((res) => {
-              console.log('list', this.list);
-              if (res.data.code === 0) {
-                this.$message({
-                  message: '保存成功',
-                  type: 'success',
-                });
-              } else {
-                this.$message({
-                  message: res.data.description,
-                  type: 'error',
-                });
-              }
-            })
-            .catch((e) => {
-              this.$message({
-                message: e,
-                type: 'error',
-              });
-            });
-        } else {
-          console.log('error submit!!');
-        }
-      });
-    },
-  },
-};
-</script>
