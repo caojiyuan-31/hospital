@@ -15,7 +15,9 @@ const register = resolve => require(['../views/register'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
 const userInfo = resolve => require(['../views/userInfo.vue'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
-const movieInfo = resolve => require(['../views/movieInfo.vue'], resolve);
+const departmentInfo = resolve => require(['../views/departmentInfo.vue'], resolve);
+// eslint-disable-next-line global-require,import/no-dynamic-require
+const doctorInfo = resolve => require(['../views/doctorInfo.vue'], resolve);
 
 
 const router = new Router({
@@ -32,13 +34,24 @@ const router = new Router({
       ],
     },
     {
-      path: '/movieInfo',
+      path: '/departmentInfo',
       component: CommonPage,
       children: [
         {
           path: '/',
-          name: 'movieInfo',
-          component: movieInfo,
+          name: 'departmentInfo',
+          component: departmentInfo,
+        },
+      ],
+    },
+    {
+      path: '/doctorInfo',
+      component: CommonPage,
+      children: [
+        {
+          path: '/',
+          name: 'doctorInfo',
+          component: doctorInfo,
         },
       ],
     },

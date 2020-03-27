@@ -36,4 +36,12 @@ public class DoctorController {
 
     }
 
+    @RequestMapping(value = "/info", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
+    @ResponseBody
+    public Result getInfo(Long id) throws GlobalException {
+
+        return new Result(doctorService.queryObject(id));
+
+    }
+
 }

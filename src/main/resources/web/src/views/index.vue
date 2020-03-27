@@ -16,7 +16,7 @@
       <div class="wrapper-card" :style="'height:'+ h * 333 +'px;'">
         <div class="card" v-for="item in departmentList" :key="item.id">
           <meta name="referrer" content="no-referrer"/>
-          <img :src="item.url" class="image" @click="getMovieDetail(item.id)">
+          <img :src="item.url" class="image" @click="getDepartmentDetail(item.id)">
           <div>
             <p style="white-space: pre-wrap;">{{item.name}}    </p>
           </div>
@@ -61,7 +61,7 @@
                   <meta name="referrer" content="no-referrer"/>
                   <img :src=item.url height="75" width="75">
               </div>
-          <div>
+          <div  @click="getDoctorDetail(item.id)">
             <p style="white-space: pre-wrap;">姓名：{{item.name}}          科室：{{item.departmentName}}          学历：{{item.schoolName}}       级别：{{item.level}}</p>
             <p style="margin-top:25px">擅长技能： {{item.skill}}</p>
           </div>
@@ -167,8 +167,6 @@ export default {
         pageSize: 5,
       },
       announcementTotal: 0,
-      isLogin: !!store.state.token,
-      isShow: false,
     };
   },
 
@@ -198,14 +196,9 @@ export default {
     },
 
 
-    getMovieDetail(id) {
-      localStorage.setItem('movieId', id);
-      this.$router.push({ name: 'movieInfo' });
-    },
-
-    personDetail(id) {
-      localStorage.setItem('personId', id);
-      this.$router.push({ name: 'personInfo' });
+    getDepartmentDetail(id) {
+      localStorage.setItem('departmentId', id);
+      this.$router.push({ name: 'departmentInfo' });
     },
 
     getDepartment() {
@@ -221,11 +214,6 @@ export default {
         });
     },
 
-    selectDoctor(departmentName) {
-      this.doctor.departmentName = departmentName;
-      this.getDoctor();
-    },
-
     doctorSizeChange(val) {
       this.doctorPage.pageSize = val;
       this.getDoctor();
@@ -233,6 +221,11 @@ export default {
     doctorCurrentChange(val) {
       this.doctorPage.pageNo = val;
       this.getDoctor();
+    },
+
+    getDoctorDetail(id) {
+      localStorage.setItem('doctorId', id);
+      this.$router.push({ name: 'doctorInfo' });
     },
 
     getDoctor() {
@@ -250,12 +243,10 @@ export default {
     announcementSizeChange(val) {
       this.announcementPage.pageSize = val;
       this.getAnnouncement();
-      console.log(`每页 ${val} 条`);
     },
     announcementCurrentChange(val) {
       this.announcementPage.pageNo = val;
       this.getAnnouncement();
-      console.log(`当前页: ${val}`);
     },
 
     getAnnouncement() {

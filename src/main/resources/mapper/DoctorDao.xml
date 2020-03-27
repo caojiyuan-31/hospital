@@ -49,7 +49,7 @@
 	</sql>
 
     <select id="queryObject" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" /> from register where id = #{value}
+        select <include refid="Base_Column_List" /> from doctor where id = #{value}
     </select>
 
     <select id="queryList" resultMap="BaseResultMap">

@@ -17,14 +17,17 @@ export default {
   getDepartment() {
     return `${localhost}/department/list`;
   },
+  getDepartmentInfo() {
+    return `${localhost}/department/info`;
+  },
   getDoctor() {
     return `${localhost}/doctor/list`;
   },
+  getDoctorInfo() {
+    return `${localhost}/doctor/info`;
+  },
   getAnnouncement() {
     return `${localhost}/announcement/list`;
-  },
-  getMovieInfo() {
-    return `${host}/movie/info`;
   },
   getPerson() {
     return `${host}/person/list`;

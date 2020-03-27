@@ -26,7 +26,7 @@ public class DataController {
     @Autowired
     private DataManager dm;
 
-    @RequestMapping(value = "/forecastCategory", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @RequestMapping(value = "/forecastCategory", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
     public Result forecastCategory(String text) throws GlobalException {
 

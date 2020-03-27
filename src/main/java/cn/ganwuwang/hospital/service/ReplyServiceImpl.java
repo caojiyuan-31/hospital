@@ -3,6 +3,7 @@ package cn.ganwuwang.hospital.service;
 import cn.ganwuwang.hospital.dao.ReplyDao;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.pojo.Reply;
+import cn.ganwuwang.hospital.domain.pojo.ReplyTree;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.query.PageQuery;
 import cn.ganwuwang.hospital.domain.query.Sort;
@@ -11,6 +12,7 @@ import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -110,5 +112,45 @@ public class ReplyServiceImpl {
             throw new GlobalException(e, ResultEnum.DB_ERROR);
         }
 
+    }
+
+    public List<ReplyTree> getTree(Long parentId, Long toId, Long fromId) throws GlobalException {
+        List<ReplyTree> data = null;
+
+
+        Reply r = new Reply();
+        r.setFromId(fromId);
+        r.setToId(toId);
+        r.setParentId(parentId);
+
+        try{
+            data = getchildrens(r);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return  data;
+    }
+
+    private List<ReplyTree> getchildrens(Reply r) throws GlobalException {
+
+
+        //根节点的父code=0
+        if(queryTotal(r) == 0){
+            return null;
+        }
+        List<Reply> list = queryPageList(new Page(1,1000), null, r);
+        List<ReplyTree> result = new ArrayList<ReplyTree>();
+        for(Reply re : list){
+            ReplyTree node = new ReplyTree();
+            node.setId(re.getId());
+            node.setLabel(re.getText());
+            node.setValue(re);
+            r.setParentId(re.getId());
+            node.setChildren(getchildrens(r));
+            result.add(node);
+        }
+        return result;
     }
 }
