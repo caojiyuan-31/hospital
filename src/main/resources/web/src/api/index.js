@@ -14,6 +14,15 @@ export default {
   getMovie() {
     return `${host}/movie/list`;
   },
+  getDepartment() {
+    return `${localhost}/department/list`;
+  },
+  getDoctor() {
+    return `${localhost}/doctor/list`;
+  },
+  getAnnouncement() {
+    return `${localhost}/announcement/list`;
+  },
   getMovieInfo() {
     return `${host}/movie/info`;
   },

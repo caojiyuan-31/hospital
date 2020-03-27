@@ -2,8 +2,7 @@ import api from './index';
 import axios from '../http';
 
 const headers = {
-  'Content-Type': 'application/json',
-  // 'Content-Type': 'application/x-www-form-urlencoded',
+  'Content-Type': 'application/json;charset=UTF-8',
 };
 
 export default {
@@ -13,6 +12,16 @@ export default {
   getMovie() {
     return axios.get(api.getMovie(), { params: { size: 12 } }, { headers });
   },
+  getDepartment() {
+    return axios.get(api.getDepartment());
+  },
+  getDoctor(pageNo, pageSize, departmentId, level) {
+    return axios.get(api.getDoctor(), { params: { pageNo, pageSize, departmentId, level } });
+  },
+  getAnnouncement(pageNo, pageSize) {
+    return axios.get(api.getAnnouncement(), { params: { pageNo, pageSize } });
+  },
+
   getMovieInfo(id) {
     return axios.get(api.getMovieInfo(), { params: { movieId: id } }, { headers });
   },

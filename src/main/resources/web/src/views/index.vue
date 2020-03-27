@@ -9,14 +9,14 @@
         </el-carousel>
       </div>
     </div>
+
     <div class="division"><h3>科室信息</h3>
-      <h3 style="color: #888;font-weight: 400">--- HOTMOVIES ---</h3></div>
+      <h3 style="color: #888;font-weight: 400">--- DEPARTMENTS ---</h3></div>
     <div class="cardContain">
-      <div class="wrapper-card">
-        <div class="card" v-for="(item, key) in movieList" :key="key">
-<!--          引入资源防止403-->
+      <div class="wrapper-card" :style="'height:'+ h * 333 +'px;'">
+        <div class="card" v-for="item in departmentList" :key="item.id">
           <meta name="referrer" content="no-referrer"/>
-          <img :src="item.cover" class="image" @click="getMovieDetail(item.movieId)">
+          <img :src="item.url" class="image" @click="getMovieDetail(item.id)">
           <div>
             <p style="white-space: pre-wrap;">{{item.name}}    </p>
           </div>
@@ -27,42 +27,91 @@
 
     <div class="division">
       <h3>医生信息</h3>
-      <h3 style="color: #888;font-weight: 400">--- PERSONS ---</h3>
+      <h3 style="color: #888;font-weight: 400">--- DOCTORS ---</h3>
     </div>
+
+
+  <div class = "selects">
+    <el-select v-model="doctor.departmentId" placeholder="请选择科室" @change="getDoctor()">
+    <el-option
+      v-for="item in departmentList"
+      :key="item.id"
+      :label="item.name"
+      :value="item.id"
+      >
+    </el-option>
+  </el-select>
+
+    <el-select v-model="doctor.level" placeholder="请选择级别" @change="getDoctor()">
+    <el-option
+      v-for="item in level"
+      :key="item.name"
+      :label="item.name"
+      :value="item.name"
+      >
+    </el-option>
+  </el-select>
+  </div>
+
     <div class="newsContain">
       <div class="temp">
 <!--        @click="personDetail(item.id)-->
-        <div class="newsItem" v-for="(item, key) in personList" :key="key">
+        <div class="newsItem" v-for="item in doctorList" :key="item.id">
                 <div class="picContain" ontouchstart="this.classList.toggle('hover');">
                   <meta name="referrer" content="no-referrer"/>
-                  <img :src=item.avatar height="75" width="75">
+                  <img :src=item.url height="75" width="75">
               </div>
           <div>
-            <p style="white-space: pre-wrap;">姓名：{{item.name}}          性别：{{item.sex}}          地点：{{item.birthPlace}}       别名：{{item.nameZn}}</p>
-            <p style="margin-top:25px">职业： {{item.profession}}</p>
+            <p style="white-space: pre-wrap;">姓名：{{item.name}}          科室：{{item.departmentName}}          学历：{{item.schoolName}}       级别：{{item.level}}</p>
+            <p style="margin-top:25px">擅长技能： {{item.skill}}</p>
           </div>
         </div>
       </div>
+
+      <div class = "selects">
+        <el-pagination
+        background
+        @size-change="doctorSizeChange"
+        @current-change="doctorCurrentChange"
+        :current-page="doctorPage.pageNo"
+        :page-sizes="[10, 20, 100]"
+        :page-size="doctorPage.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="doctorTotal">
+      </el-pagination>
+        </div>
+
     </div>
+
 
     <div class="division">
       <h3>近期公告</h3>
-      <h3 style="color: #888;font-weight: 400">--- PERSONS ---</h3>
+      <h3 style="color: #888;font-weight: 400">--- ANNOUNCEMENTS ---</h3>
     </div>
     <div class="newsContain">
       <div class="temp">
 <!--        @click="personDetail(item.id)-->
-        <div class="newsItem" v-for="(item, key) in personList" :key="key">
-                <div class="picContain" ontouchstart="this.classList.toggle('hover');">
-                  <meta name="referrer" content="no-referrer"/>
-                  <img :src=item.avatar height="75" width="75">
-              </div>
+        <div class="newsItem" v-for="item in announcementList" :key="item.id">
           <div>
-            <p style="white-space: pre-wrap;">姓名：{{item.name}}          性别：{{item.sex}}          地点：{{item.birthPlace}}       别名：{{item.nameZn}}</p>
-            <p style="margin-top:25px">职业： {{item.profession}}</p>
+            <p style="white-space: pre-wrap;">标题：{{item.title}}          时间：{{item.createdTime}}          发布人：{{item.createdUser}}</p>
+            <p style="margin-top:25px">内容： {{item.text}}</p>
           </div>
         </div>
       </div>
+
+    <div class = "selects">
+        <el-pagination
+        background
+        @size-change="announcementSizeChange"
+        @current-change="announcementCurrentChange"
+        :current-page="announcementPage.pageNo"
+        :page-sizes="[5, 10, 20]"
+        :page-size="announcementPage.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="announcementTotal">
+      </el-pagination>
+        </div>
+
     </div>
 
     <div class="division"><h3>关于我们</h3>
@@ -76,8 +125,7 @@
     <div class="division"><h3>联系我们</h3>
       <h3 style="color: #888;font-weight: 400">--- CONTACT ---</h3></div>
     <div class="footer">
-      <a href="https://github.com/pq-dong"><img src="../assets/github.png"><span>https://github.com/pq-dong</span></a>
-      <a href="https://github.com/erxuesun"><img src="../assets/github.png"><span>https://github.com/erxuesun</span></a>
+      <a href="https://github.com/caojiyuan-31"><img src="../assets/github.png"><span>https://github.com/caojiyuan-31</span></a>
     </div>
   </div>
 </template>
@@ -91,16 +139,34 @@ import store from '../store/store';
 export default {
   data() {
     return {
+      h: 3,
       crouselImg: [
-        { img: 'https://ydschool-video.nosdn.127.net/1583850881001Snipaste_2020-03-10_22-35-21.png' },
-        { img: 'https://ydschool-video.nosdn.127.net/1583851372811Snipaste_2020-03-10_22-43-36.png' },
-        { img: 'https://ydschool-video.nosdn.127.net/1583851439196Snipaste_2020-03-10_22-42-28.png' },
-        { img: 'https://ydschool-video.nosdn.127.net/1583851475466Snipaste_2020-03-10_22-40-12.png' },
-
+        { img: 'http://localhost:8080/upload/lb1.jpg' },
+        { img: 'http://localhost:8080/upload/lb2.jpg' },
+        { img: 'http://localhost:8080/upload/lb3.jpg' },
+        { img: 'http://localhost:8080/upload/lb4.jpeg' },
       ],
       activeIndex2: '1',
-      movieList: [],
-      personList: [],
+      departmentList: [],
+      doctorList: [],
+      announcementList: [],
+      level: [
+        { name: '普通' }, { name: '主任' }, { name: '副主任' },
+      ],
+      doctor: {
+        level: '',
+        departmentId: '',
+      },
+      doctorPage: {
+        pageNo: 1,
+        pageSize: 10,
+      },
+      doctorTotal: 0,
+      announcementPage: {
+        pageNo: 1,
+        pageSize: 5,
+      },
+      announcementTotal: 0,
       isLogin: !!store.state.token,
       isShow: false,
     };
@@ -108,8 +174,9 @@ export default {
 
   mounted() {
     window.addEventListener('scroll', this.handler);
-    this.getMovie();
-    this.getPerson();
+    this.getDepartment();
+    this.getDoctor();
+    this.getAnnouncement();
   },
   methods: {
     handler() {
@@ -130,40 +197,79 @@ export default {
       }
     },
 
-    personDetail(id) {
-      localStorage.setItem('personId', id);
-      this.$router.push({ name: 'personInfo' });
-    },
-
-    getPerson() {
-      fetch.getPerson()
-        .then((res) => {
-          if (res.status === 200) {
-            if (res.data.code === 0) {
-              this.personList = res.data.data.personList;
-            }
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-    getMovie() {
-      fetch.getMovie()
-        .then((res) => {
-          if (res.status === 200) {
-            if (res.data.code === 0) {
-              this.movieList = res.data.data.movieList;
-            }
-          }
-        });
-    },
 
     getMovieDetail(id) {
       localStorage.setItem('movieId', id);
       this.$router.push({ name: 'movieInfo' });
     },
+
+    personDetail(id) {
+      localStorage.setItem('personId', id);
+      this.$router.push({ name: 'personInfo' });
+    },
+
+    getDepartment() {
+      fetch.getDepartment()
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.departmentList = res.data.data.list;
+              // eslint-disable-next-line radix
+              this.h = parseInt((this.departmentList.length + 3) / 4);
+            }
+          }
+        });
+    },
+
+    selectDoctor(departmentName) {
+      this.doctor.departmentName = departmentName;
+      this.getDoctor();
+    },
+
+    doctorSizeChange(val) {
+      this.doctorPage.pageSize = val;
+      this.getDoctor();
+    },
+    doctorCurrentChange(val) {
+      this.doctorPage.pageNo = val;
+      this.getDoctor();
+    },
+
+    getDoctor() {
+      fetch.getDoctor(this.doctorPage.pageNo, this.doctorPage.pageSize, this.doctor.departmentId, this.doctor.level)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.doctorList = res.data.data.list;
+              this.doctorTotal = res.data.data.totalCount;
+            }
+          }
+        });
+    },
+
+    announcementSizeChange(val) {
+      this.announcementPage.pageSize = val;
+      this.getAnnouncement();
+      console.log(`每页 ${val} 条`);
+    },
+    announcementCurrentChange(val) {
+      this.announcementPage.pageNo = val;
+      this.getAnnouncement();
+      console.log(`当前页: ${val}`);
+    },
+
+    getAnnouncement() {
+      fetch.getAnnouncement(this.announcementPage.pageNo, this.announcementPage.pageSize)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.announcementList = res.data.data.list;
+              this.announcementTotal = res.data.data.totalCount;
+            }
+          }
+        });
+    },
+
   },
 };
 </script>
@@ -277,7 +383,7 @@ export default {
   .aboutus {
     width: 100%;
     height: 500px;
-    background: url("https://ydschool-video.nosdn.127.net/158480509232652112_AaOXxSky.jpg") no-repeat;
+    background: url("http://localhost:8080/upload/yx.jpg") no-repeat;
     background-size: 100% 100%;
     filter: grayscale(70%);
     opacity: 0.7;
@@ -388,4 +494,7 @@ export default {
     border: 0;
   }
 
+  .selects{
+    padding: 0px 0px 30px 0px;
+  }
 </style>

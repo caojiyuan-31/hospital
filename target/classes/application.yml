@@ -2,7 +2,10 @@ server:
   port: 8080
 
 spring:
-  #resources:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    #resources:
     #static-locations: classpath:/static/
   mail:
     host: smtp.qq.com

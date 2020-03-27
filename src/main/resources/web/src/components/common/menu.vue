@@ -4,9 +4,7 @@
       <div>
         <span @click="redirect(1)" class="tab">首页</span>
         <span @click="redirect(2)" class="tab" v-if="!isShow">个人中心</span>
-        <span class="tab"><el-input placeholder="搜索电影" style="width:18rem" v-model="content"
-                                                 @change="getMovie(content)"><i slot="prefix"
-                                                                              class="el-input__icon el-icon-search"></i></el-input></span>
+
       </div>
       <div>
 <!--        <span @click="redirect(3)" class="tab" v-show="!isShow">-->
@@ -67,12 +65,6 @@ export default {
     },
     toregister() {
       this.$router.push({ name: 'register' });
-    },
-    getMovie(value) {
-      if (value !== null) {
-        localStorage.setItem('content', value);
-      }
-      // this.$router.push({ name: 'search', params: { count: 1 } });
     },
     logout() {
       fetch

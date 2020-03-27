@@ -80,7 +80,7 @@
 
     <insert id="save" parameterType="cn.ganwuwang.hospital.domain.pojo.Doctor" useGeneratedKeys="true" keyProperty="id">
 		insert into doctor
-		  (`user_id`,`name`,`department_id`,`department_name`,`school_name`,`level`,`url``am`,`pm`,`skill`,`description`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
+		  (`user_id`,`name`,`department_id`,`department_name`,`school_name`,`level`,`url`,`am`,`pm`,`skill`,`description`,`delete_flag`,`created_time`,`modified_time`,`created_user`,`modified_user`)
 		values
 		  (#{userId},#{name},#{departmentId},#{departmentName},#{schoolName},#{level},#{url},#{am},#{pm},#{skill},#{description},#{deleteFlag},now(),now(),#{createdUser},#{modifiedUser})
 	</insert>

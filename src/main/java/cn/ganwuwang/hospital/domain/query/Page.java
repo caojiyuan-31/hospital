@@ -5,11 +5,11 @@ public class Page {
     /**
      * 起始页数
      */
-    private Integer pageNo=1;
+    private Integer pageNo;
     /**
      * 每页条数
      */
-    private Integer pageSize=20;
+    private Integer pageSize;
 
 
     public Page(){}
@@ -46,11 +46,4 @@ public class Page {
         this.pageSize = pageSize;
     }
 
-    @Override
-    public String toString() {
-        return "Page{" +
-                "pageNo=" + pageNo +
-                ", pageSize=" + pageSize +
-                '}';
-    }
 }
