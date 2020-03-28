@@ -2,6 +2,7 @@ package cn.ganwuwang.hospital.service;
 
 import cn.ganwuwang.hospital.dao.ReplyDao;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
+import cn.ganwuwang.hospital.domain.pojo.Doctor;
 import cn.ganwuwang.hospital.domain.pojo.Reply;
 import cn.ganwuwang.hospital.domain.pojo.ReplyTree;
 import cn.ganwuwang.hospital.domain.query.Page;
@@ -20,6 +21,9 @@ public class ReplyServiceImpl {
 
     @Autowired
     private ReplyDao replyDao;
+
+    @Autowired
+    private DoctorServiceImpl doctorService;
 
     public List<Reply> queryPageList(Page page, List<Sort> sort, Reply reply) throws GlobalException {
 
@@ -114,13 +118,35 @@ public class ReplyServiceImpl {
 
     }
 
-    public List<ReplyTree> getTree(Long parentId, Long toId, Long fromId) throws GlobalException {
+    public Long getParentName(Long id) throws GlobalException {
+
+        Long re = null;
+        Reply reply = queryObject(getParent(id));
+        Doctor d = new Doctor();
+        d.setName(reply.getToName());
+        re = doctorService.queryPageList(new Page(1, 10), null, d).get(0).getId();
+        return re;
+    }
+
+    private Long getParent(Long id) throws GlobalException {
+
+        Long re =id;
+        Reply reply = queryObject(id);
+
+        if(reply.getParentId() == 0){
+            return re;
+        }
+
+        return  getParent(reply.getParentId());
+    }
+
+
+    public List<ReplyTree> getTree(Long parentId, String toName) throws GlobalException {
         List<ReplyTree> data = null;
 
 
         Reply r = new Reply();
-        r.setFromId(fromId);
-        r.setToId(toId);
+        r.setToName(toName);
         r.setParentId(parentId);
 
         try{
@@ -145,9 +171,10 @@ public class ReplyServiceImpl {
         for(Reply re : list){
             ReplyTree node = new ReplyTree();
             node.setId(re.getId());
-            node.setLabel(re.getText());
+            node.setLabel(re.getFromName()+" @ "+re.getToName()+"说:"+re.getText());
             node.setValue(re);
             r.setParentId(re.getId());
+            r.setToName(null);
             node.setChildren(getchildrens(r));
             result.add(node);
         }

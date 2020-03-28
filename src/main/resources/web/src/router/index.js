@@ -13,6 +13,8 @@ const login = resolve => require(['../views/login'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
 const register = resolve => require(['../views/register'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
+const password = resolve => require(['../views/password'], resolve);
+// eslint-disable-next-line global-require,import/no-dynamic-require
 const userInfo = resolve => require(['../views/userInfo.vue'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
 const departmentInfo = resolve => require(['../views/departmentInfo.vue'], resolve);
@@ -64,6 +66,11 @@ const router = new Router({
       path: '/register',
       name: 'register',
       component: register,
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: password,
     },
     {
       path: '/userInfo',

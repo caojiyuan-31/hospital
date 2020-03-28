@@ -9,7 +9,7 @@
         <td></td>
       </tr>
     </table>
-    <el-form :model="user" status-icon :rules="rules2" ref="putSelfOther" class="formWrap">
+    <el-form :model="user" status-icon :rules="rules2" ref="updatePassOfEmail" class="formWrap">
        <el-form-item prop="password">
           <el-input type="password" v-model="user.password" auto-complete="off" placeholder="密码"></el-input>
         </el-form-item>
@@ -22,7 +22,7 @@
           <el-button :disabled="isAble" @click="sendCode">{{this.msg}}</el-button>
         </el-form-item>
       <el-form-item>
-        <el-button  type="primary" class="registerBtn" @click="submitOther('putSelfOther')">提交</el-button>
+        <el-button  type="primary" class="registerBtn" @click="submitOther('updatePassOfEmail')">提交</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -45,7 +45,7 @@ export default {
         callback(new Error('请输入密码'));
       } else {
         if (this.user.checkPass !== '') {
-          this.$refs.putSelfOther.validateField('checkPass');
+          this.$refs.updatePassOfEmail.validateField('checkPass');
         }
         callback();
       }
@@ -165,7 +165,7 @@ export default {
             password: this.user.password,
           };
           fetch
-            .putSelfOther(user, this.user.check)
+            .updatePassOfEmail(user, this.user.check)
             .then((res) => {
               if (res.data.code === '00000') {
                 this.$message({

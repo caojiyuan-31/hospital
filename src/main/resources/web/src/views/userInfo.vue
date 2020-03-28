@@ -23,6 +23,7 @@
 import UserInfo from '../components/userInfo';
 import UserInfo2 from '../components/userInfo2';
 import UserInfo3 from '../components/userInfo3';
+import UserInfo4 from '../components/userInfo4';
 
 export default {
   data() {
@@ -40,6 +41,10 @@ export default {
         title: '修改密码',
         name: '3',
         content: 'UserInfo3',
+      }, {
+        title: '消息中心',
+        name: '4',
+        content: 'UserInfo4',
       }],
       activeIndex2: '1',
       btnText: '取消',
@@ -60,6 +65,7 @@ export default {
     UserInfo,
     UserInfo2,
     UserInfo3,
+    UserInfo4,
   },
   methods: {
 

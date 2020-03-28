@@ -1,5 +1,7 @@
 package cn.ganwuwang.hospital.service;
 
+import cn.ganwuwang.hospital.domain.constant.ResultEnum;
+import cn.ganwuwang.hospital.domain.results.GlobalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
@@ -28,11 +30,16 @@ public class MailServiceImpl {
         return false;
     }
 
-    public void sendCheckMail(String to){
+    public void sendCheckMail(String to) throws GlobalException {
+
+        if(redisTemplate.hasKey(to)){
+            throw new GlobalException(ResultEnum.CHECK_TIME_ERROR);
+        }
         Integer check = (int)((Math.random()*9+1)*1000);
         String subject = "智能分诊平台邮箱验证码";
         String content = "验证码为："+check+",有效时间为60秒。";
         sendSimpleMail(to, subject, content);
+        System.out.println(check);
         redisTemplate.opsForValue().set(to,check, 60 , TimeUnit.SECONDS);
     }
 

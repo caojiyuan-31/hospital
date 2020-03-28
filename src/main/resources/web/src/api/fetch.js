@@ -24,6 +24,18 @@ export default {
   getDoctorInfo(id) {
     return axios.get(api.getDoctorInfo(), { params: { id } });
   },
+  getDoctorId(id) {
+    return axios.get(api.getDoctorId(), { params: { id } });
+  },
+  getReply(pageNo, pageSize, toName) {
+    return axios.get(api.getReply(), { params: { pageNo, pageSize, toName } });
+  },
+  getReplyTree(toName) {
+    return axios.get(api.getReplyTree(), { params: { toName } });
+  },
+  addReply(reply) {
+    return axios.post(api.addReply(), reply, { headers });
+  },
   getAnnouncement(pageNo, pageSize) {
     return axios.get(api.getAnnouncement(), { params: { pageNo, pageSize } });
   },
@@ -53,8 +65,11 @@ export default {
   putSelfInfo(userInfo) {
     return axios.post(api.putSelfInfo(), userInfo, { headers });
   },
-  putSelfOther(user, check) {
-    return axios.post(api.putSelfOther(), { user, check }, { headers });
+  updateSelfEmail(user, check) {
+    return axios.post(api.updateSelfEmail(), { user, check }, { headers });
+  },
+  updatePassOfEmail(user, check) {
+    return axios.post(api.updatePassOfEmail(), { user, check }, { headers });
   },
 
   changePhone(phone) {

@@ -16,6 +16,9 @@
           <el-button type="primary" class="loginBtn" @click="submitForm('loginInfo')">登录</el-button>
         </el-form-item>
       </el-form>
+      <div class="footer-tip2" @click="toPassword">
+        忘记密码
+      </div>
       <div class="footer-tip" @click="toRegister">
         没有账号？直接注册
       </div>
@@ -70,6 +73,9 @@ export default {
     },
     toRegister() {
       this.$router.push({ name: 'register' });
+    },
+    toPassword() {
+      this.$router.push({ name: 'password' });
     },
     submitForm(formName) {
       // const formData = new FormData();
@@ -173,6 +179,15 @@ export default {
     position: absolute;
     bottom: 16px;
     right: 16px;
+  }
+
+  .footer-tip2 {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
   }
 
   .bg_bottom {

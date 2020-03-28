@@ -9,7 +9,7 @@
         <td></td>
       </tr>
     </table>
-    <el-form :model="user" status-icon :rules="rules2" ref="putSelfOther" class="formWrap">
+    <el-form :model="user" status-icon :rules="rules2" ref="updateSelfEmail" class="formWrap">
        <el-form-item prop="newEmail">
           <el-input type="text" v-model="user.newEmail" auto-complete="off" placeholder="新邮箱"></el-input>
         </el-form-item>
@@ -19,7 +19,7 @@
           <el-button :disabled="isAble" @click="sendCode">{{this.msg}}</el-button>
         </el-form-item>
       <el-form-item>
-        <el-button  type="primary" class="registerBtn" @click="submitOther('putSelfOther')">提交</el-button>
+        <el-button  type="primary" class="registerBtn" @click="submitOther('updateSelfEmail')">提交</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -150,13 +150,14 @@ export default {
             email: this.user.newEmail,
           };
           fetch
-            .putSelfOther(user, this.user.check)
+            .updateSelfEmail(user, this.user.check)
             .then((res) => {
               if (res.data.code === '00000') {
                 this.$message({
                   message: '修改成功',
                   type: 'success',
                 });
+                this.getSelfInfo();
               } else {
                 this.$message({
                   message: res.data.msg,

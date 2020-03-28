@@ -82,8 +82,6 @@ public class UserController {
     @ResponseBody
     public Result sendCheckMail(@RequestBody(required=false) String to) throws GlobalException {
 
-        System.out.println(to);
-
         if(to == null || "".equals(to)){
             Object o = CheckUtils.getAuthentication().getPrincipal();
             LoadUser u = null;
@@ -93,13 +91,8 @@ public class UserController {
                 throw new GlobalException(ResultEnum.LOAD_ERROR);
             }
             to = u.getEmail();
-        }else {
-            User q = new User();
-            q.setEmail(to);
-            if(userService.queryTotal(q) != 0){
-                throw new GlobalException(ResultEnum.EMAIL_ERROR);
-            }
         }
+
         mailService.sendCheckMail(to);
         return new Result();
 
@@ -126,20 +119,25 @@ public class UserController {
             throw new GlobalException(ResultEnum.NAME_ERROR);
         }
 
+        q.setUsername(null);
+        q.setEmail(user.getEmail());
+        if(userService.queryTotal(q) != 0){
+            throw new GlobalException(ResultEnum.EMAIL_ERROR);
+        }
+
         userService.save(user);
         return new Result();
 
     }
 
-    @RequestMapping(value = "/updateOther", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSelfEmail", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
-    public Result updateSelfOther(@RequestBody UserAndCheck userAndCheck) throws GlobalException {
+    public Result updateSelfEmail(@RequestBody UserAndCheck userAndCheck) throws GlobalException {
 
         User user = userAndCheck.getUser();
         Integer check = userAndCheck.getCheck();
 
-        if(( user.getEmail() == null || "".equals(user.getEmail()))
-                && (user.getPassword() == null || "".equals(user.getPassword()) )){
+        if( user.getEmail() == null || "".equals(user.getEmail())){
             throw new GlobalException(ResultEnum.DATA_ERROR);
         }
 
@@ -152,9 +150,46 @@ public class UserController {
         }
         user.setId(u.getId());
 
+
+        User q = new User();
+        q.setEmail(user.getEmail());
+        if(userService.queryTotal(q) != 0){
+            throw new GlobalException(ResultEnum.EMAIL_ERROR);
+        }
+
         if(!mailService.checkMail(user.getEmail(), check)){
             throw new GlobalException(ResultEnum.CHECK_ERROR);
         }
+
+        userService.update(user);
+        return new Result();
+
+    }
+
+    @RequestMapping(value = "/updatePassOfEmail", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @ResponseBody
+    public Result updatePassOfEmail(@RequestBody UserAndCheck userAndCheck) throws GlobalException {
+
+        User user = userAndCheck.getUser();
+        Integer check = userAndCheck.getCheck();
+
+        if(( user.getEmail() == null || "".equals(user.getEmail()))
+                && (user.getPassword() == null || "".equals(user.getPassword()) )){
+            throw new GlobalException(ResultEnum.DATA_ERROR);
+        }
+
+        User q = new User();
+        q.setEmail(user.getEmail());
+        if(userService.queryTotal(q) != 1){
+            throw new GlobalException(ResultEnum.UNEMAIL_ERROR);
+        }
+
+        if(!mailService.checkMail(user.getEmail(), check)){
+            throw new GlobalException(ResultEnum.CHECK_ERROR);
+        }
+
+        User OldUser = userService.queryPageList(new Page(1, 10), null, q).get(0);
+        user.setId(OldUser.getId());
 
         userService.update(user);
         return new Result();
@@ -170,9 +205,6 @@ public class UserController {
         if(o instanceof LoadUser){
             u = (LoadUser)o;
         }else {
-            throw new GlobalException(ResultEnum.LOAD_ERROR);
-        }
-        if(u.getId() == null){
             throw new GlobalException(ResultEnum.LOAD_ERROR);
         }
         user.setId(u.getId());

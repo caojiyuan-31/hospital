@@ -23,7 +23,7 @@
         <if test="query != null">
             <if test="query.fromId != null"> and `from_id` = #{query.fromId}</if>
             <if test="query.fromName != null and query.fromName != '' "> and `from_name` = #{query.fromName}</if>
-            <if test="query.roleId != null"> and `to_id` = #{query.roleId}</if>
+            <if test="query.toId != null"> and `to_id` = #{query.toId}</if>
             <if test="query.toName != null and query.toName != '' "> and `to_name` = #{query.toName}</if>
             <if test="query.parentId != null"> and `parent_id` = #{query.parentId}</if>
             <if test="query.text != null and query.text != '' "> and `text` = #{query.text}</if>
@@ -80,7 +80,7 @@
         <set>
             <if test="fromId != null">`from_id` = #{fromId},</if>
             <if test="fromName != null">`from_name` = #{fromName},</if>
-            <if test="roleId != null">`to_id` = #{roleId},</if>
+            <if test="toId != null">`to_id` = #{toId},</if>
             <if test="toName != null">`to_name` = #{toName},</if>
             <if test="parentId != null">`parent_id` = #{parentId},</if>
             <if test="text != null">`text` = #{text},</if>
