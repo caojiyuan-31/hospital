@@ -133,9 +133,7 @@ export default {
         }, 1000);
       }
     },
-    toIndex() {
-      this.$router.push({ name: 'index' });
-    },
+
     getSelfInfo() {
       fetch
         .getSelfInfo()

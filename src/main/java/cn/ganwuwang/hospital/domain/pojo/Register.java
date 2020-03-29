@@ -1,5 +1,7 @@
 package cn.ganwuwang.hospital.domain.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ public class Register implements Serializable {
     private String userName;
     private Long doctorId;
     private String doctorName;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private Integer scope;
     private Integer status;

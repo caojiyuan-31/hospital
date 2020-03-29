@@ -2,6 +2,7 @@ package cn.ganwuwang.hospital.controller;
 
 
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
+import cn.ganwuwang.hospital.domain.pojo.Doctor;
 import cn.ganwuwang.hospital.domain.pojo.LoadUser;
 import cn.ganwuwang.hospital.domain.pojo.User;
 import cn.ganwuwang.hospital.domain.pojo.UserAndCheck;
@@ -10,6 +11,7 @@ import cn.ganwuwang.hospital.domain.query.Sort;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.domain.results.PageRes;
 import cn.ganwuwang.hospital.domain.results.Result;
+import cn.ganwuwang.hospital.service.DoctorServiceImpl;
 import cn.ganwuwang.hospital.service.MailServiceImpl;
 import cn.ganwuwang.hospital.service.UserServiceImpl;
 import cn.ganwuwang.hospital.utils.CheckUtils;
@@ -31,6 +33,9 @@ public class UserController {
 
     @Autowired
     private MailServiceImpl mailService;
+
+    @Autowired
+    private DoctorServiceImpl doctorService;
 
     @RequestMapping(value = "/current", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
@@ -226,6 +231,17 @@ public class UserController {
 
         userService.update(user);
         return new Result();
+
+    }
+
+    @RequestMapping(value = "/infoOfDoctorId", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
+    @ResponseBody
+    public Result getInfoOfDoctorId(Long id) throws GlobalException {
+
+        Doctor d = doctorService.queryObject(id);
+        User u = userService.queryObject(d.getUserId());
+
+        return new Result(u);
 
     }
 

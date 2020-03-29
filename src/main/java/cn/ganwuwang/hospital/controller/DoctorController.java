@@ -1,5 +1,6 @@
 package cn.ganwuwang.hospital.controller;
 
+import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.pojo.Doctor;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
@@ -41,6 +42,21 @@ public class DoctorController {
     public Result getInfo(Long id) throws GlobalException {
 
         return new Result(doctorService.queryObject(id));
+
+    }
+
+    @RequestMapping(value = "/infoOfUserId", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
+    @ResponseBody
+    public Result getInfoOfUserId(Long id) throws GlobalException {
+
+        Doctor d = new Doctor();
+        d.setUserId(id);
+        List<Doctor> list = doctorService.queryPageList(new Page(1, 20), null, d);
+        if(list.size() == 0){
+            throw new GlobalException(ResultEnum.DATA_ERROR);
+        }
+
+        return new Result(list.get(0));
 
     }
 

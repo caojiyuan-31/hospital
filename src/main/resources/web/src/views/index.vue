@@ -10,6 +10,12 @@
       </div>
     </div>
 
+    <div style="margin-top: 15px;">
+      <el-input placeholder="请输入内容" v-model="input" >
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </div>
+
     <div class="division"><h3>科室信息</h3>
       <h3 style="color: #888;font-weight: 400">--- DEPARTMENTS ---</h3></div>
     <div class="cardContain">
@@ -139,6 +145,7 @@ import store from '../store/store';
 export default {
   data() {
     return {
+      input: '',
       h: 3,
       crouselImg: [
         { img: 'http://localhost:8080/upload/lb1.jpg' },

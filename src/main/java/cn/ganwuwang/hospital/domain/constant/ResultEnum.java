@@ -17,7 +17,12 @@ public enum ResultEnum {
     NAME_ERROR("00010", "用户名已存在"),
     REPLY_SELF("000011", "无法回复自己"),
     CHECK_ERROR("00012", "验证码错误"),
-    CHECK_TIME_ERROR("00013", "验证码未过期");
+    CHECK_TIME_ERROR("00013", "验证码未过期"),
+    REGISTER_FULL("00014", "该医生该时段挂号已满"),
+    REGISTER_TWO("00015", "未看诊前请勿多次挂号"),
+    REGISTER_CANNEL("00016", "该挂号已不可取消"),
+    REGISTER_NOT("00017", "不存在挂号"),
+    IDENTITY_UNKNOW("00018", "请完善身份信息和联系方式");
 
     private ResultEnum(String code, String msg) {
         this.code = code;

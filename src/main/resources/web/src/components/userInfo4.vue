@@ -125,12 +125,7 @@ export default {
         });
     },
 
-    toIndex() {
-      this.$router.push({ name: 'index' });
-    },
-
     replyClick(row) {
-      console.log(row);
       this.dialogVisible = true;
       this.reply.parentId = row.id;
       this.reply.toName = row.fromName;
@@ -191,7 +186,6 @@ export default {
             if (res.data.code === '00000') {
               this.replyList = res.data.data.list;
               this.replyTotal = res.data.data.totalCount;
-              console.log(this.replyList);
             }
           }
         });

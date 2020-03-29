@@ -3,11 +3,15 @@ package cn.ganwuwang.hospital.controller;
 import cn.ganwuwang.hospital.classification.*;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.pojo.Department;
+import cn.ganwuwang.hospital.domain.pojo.LoadUser;
+import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.domain.results.Result;
+import cn.ganwuwang.hospital.service.DepartmentServiceImpl;
 import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,17 +28,32 @@ public class DataController {
     private ProbabilityServiceImpl probabilityService;
 
     @Autowired
+    private DepartmentServiceImpl departmentService;
+
+    @Autowired
     private DataManager dm;
 
-    @RequestMapping(value = "/forecastCategory", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
+    @RequestMapping(value = "/forecastCategory", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
-    public Result forecastCategory(String text) throws GlobalException {
+    public Result forecastCategory(@RequestBody String text) throws GlobalException {
+
+        Object o = CheckUtils.getAuthentication().getPrincipal();
+        LoadUser u = null;
+        if(o instanceof LoadUser){
+            u = (LoadUser)o;
+        }else {
+            throw new GlobalException(ResultEnum.LOAD_ERROR);
+        }
 
         if(CheckUtils.isEmptyBatch(text)){
             return new Result(ResultEnum.DATA_ERROR);
         }
+        String name = classify(text);
+        Department d = new Department();
+        d.setName(name);
+        Department re = departmentService.queryPageList(new Page(1, 20), null, d).get(0);
 
-        return new Result(classify(text));
+        return new Result(re);
 
     }
 

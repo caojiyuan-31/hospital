@@ -2,6 +2,8 @@ package cn.ganwuwang.hospital.service;
 
 import cn.ganwuwang.hospital.dao.RegisterDao;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
+import cn.ganwuwang.hospital.domain.constant.StatusEnum;
+import cn.ganwuwang.hospital.domain.pojo.Doctor;
 import cn.ganwuwang.hospital.domain.pojo.Register;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.query.PageQuery;
@@ -10,6 +12,7 @@ import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ public class RegisterServiceImpl {
 
     @Autowired
     private RegisterDao registerDao;
+
+    @Autowired
+    private DoctorServiceImpl doctorService;
 
     public List<Register> queryPageList(Page page, List<Sort> sort, Register register) throws GlobalException {
 
@@ -65,16 +71,50 @@ public class RegisterServiceImpl {
         return result;
     }
 
+    @Transactional
     public void save(Register register) throws GlobalException {
 
-        register.setDeleteFlag(false);
-        register.setCreatedUser(CheckUtils.getAuthentication().getName());
-        try{
-            registerDao.save(register);
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        Doctor doctor = doctorService.queryObject(register.getDoctorId());
+        if(doctor == null){
+            throw  new GlobalException(ResultEnum.DATA_ERROR);
         }
+
+        Register q = new Register();
+        q.setStatus(StatusEnum.ON_REGISTER.getStatus());
+        q.setUserId(register.getUserId());
+        if(queryTotal(q) != 0 ){
+            throw new GlobalException(ResultEnum.REGISTER_TWO);
+        }
+        q.setUserId(null);
+        q.setDoctorId(register.getDoctorId());
+        q.setScope(register.getScope());
+
+        q.setDate(register.getDate());
+        Integer count = 0;
+        if(register.getScope() == 0){
+            count = doctor.getAm();
+        }else {
+            count = doctor.getPm();
+        }
+
+        if(queryTotal(q) >= count){
+            throw new GlobalException(ResultEnum.REGISTER_FULL);
+        }else {
+            register.setDoctorName(doctor.getName());
+            register.setDeleteFlag(false);
+            register.setCreatedUser(CheckUtils.getAuthentication().getName());
+            try{
+                registerDao.save(register);
+                if(queryTotal(q) > count){
+                    throw new GlobalException(ResultEnum.REGISTER_FULL);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                throw new GlobalException(e, ResultEnum.DB_ERROR);
+            }
+        }
+
+
 
     }
 

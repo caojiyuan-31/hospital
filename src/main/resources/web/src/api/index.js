@@ -1,4 +1,3 @@
-const host = 'http://movie.pqdong.com:10015';
 const localhost = 'http://localhost:8080';
 
 export default {
@@ -11,11 +10,9 @@ export default {
   getSelfInfo() {
     return `${localhost}/user/getSelfInfo`;
   },
-
-  getMovie() {
-    return `${host}/movie/list`;
+  getInfoOfDoctorId() {
+    return `${localhost}/user/infoOfDoctorId`;
   },
-
   getDepartment() {
     return `${localhost}/department/list`;
   },
@@ -27,6 +24,9 @@ export default {
   },
   getDoctorInfo() {
     return `${localhost}/doctor/info`;
+  },
+  getDoctorInfoOfUserId() {
+    return `${localhost}/doctor/infoOfUserId`;
   },
   getDoctorId() {
     return `${localhost}/reply/doctorId`;
@@ -40,17 +40,21 @@ export default {
   addReply() {
     return `${localhost}/reply/save`;
   },
+  getRegister() {
+    return `${localhost}/register/list`;
+  },
+  cancelRegister() {
+    return `${localhost}/register/cancel`;
+  },
+  updateRegister() {
+    return `${localhost}/register/update`;
+  },
+  addRegister() {
+    return `${localhost}/register/save`;
+  },
   getAnnouncement() {
     return `${localhost}/announcement/list`;
   },
-
-  getPerson() {
-    return `${host}/person/list`;
-  },
-  getMovieTag() {
-    return `${host}/movie/tag`;
-  },
-
   sendCheck() {
     return `${localhost}/user/sendCheckMail`;
   },
@@ -65,22 +69,5 @@ export default {
   },
   updatePassOfEmail() {
     return `${localhost}/user/updatePassOfEmail`;
-  },
-
-  // 修改用户手机号码
-  changePhone() {
-    return `${host}/user/phone`;
-  },
-  // 修改用户密码
-  changePass() {
-    return `${host}/user/password`;
-  },
-  // 修改用户邮箱
-  changeEmail() {
-    return `${host}/user/email`;
-  },
-  // 获取站内信
-  getMessage() {
-    return `${host}/message/user/get`;
   },
 };

@@ -6,12 +6,6 @@ const headers = {
 };
 
 export default {
-  getPerson() {
-    return axios.get(api.getPerson(), { params: { size: 9 } }, { headers });
-  },
-  getMovie() {
-    return axios.get(api.getMovie(), { params: { size: 12 } }, { headers });
-  },
   getDepartment() {
     return axios.get(api.getDepartment());
   },
@@ -23,6 +17,9 @@ export default {
   },
   getDoctorInfo(id) {
     return axios.get(api.getDoctorInfo(), { params: { id } });
+  },
+  getDoctorInfoOfUserId(id) {
+    return axios.get(api.getDoctorInfoOfUserId(), { params: { id } });
   },
   getDoctorId(id) {
     return axios.get(api.getDoctorId(), { params: { id } });
@@ -36,15 +33,23 @@ export default {
   addReply(reply) {
     return axios.post(api.addReply(), reply, { headers });
   },
+  getRegister(pageNo, pageSize, userId, doctorId, date, scope, status) {
+    return axios.get(api.getRegister(), { params: { pageNo, pageSize, userId, doctorId, date, scope, status } });
+  },
+  cancelRegister() {
+    return axios.post(api.cancelRegister());
+  },
+  updateRegister(register) {
+    return axios.post(api.updateRegister(), register, { headers });
+  },
+  addRegister(register) {
+    return axios.post(api.addRegister(), register, { headers });
+  },
   getAnnouncement(pageNo, pageSize) {
     return axios.get(api.getAnnouncement(), { params: { pageNo, pageSize } });
   },
   userRegister(user, check) {
     return axios.post(api.userRegister(), { user, check }, { headers });
-  },
-
-  movieTags() {
-    return axios.get(api.getMovieTag(), { headers });
   },
 
   userLogin(info) {
@@ -55,6 +60,9 @@ export default {
   },
   getSelfInfo() {
     return axios.get(api.getSelfInfo());
+  },
+  getInfoOfDoctorId(id) {
+    return axios.get(api.getInfoOfDoctorId(), { params: { id } });
   },
   sendCheck(to) {
     return axios.post(api.sendCheck(), to, { headers });
@@ -70,18 +78,5 @@ export default {
   },
   updatePassOfEmail(user, check) {
     return axios.post(api.updatePassOfEmail(), { user, check }, { headers });
-  },
-
-  changePhone(phone) {
-    return axios.put(api.changePhone(), JSON.stringify(phone), { headers });
-  },
-  changePass(password) {
-    return axios.put(api.changePass(), JSON.stringify(password), { headers });
-  },
-  changeEmail(email) {
-    return axios.put(api.changeEmail(), JSON.stringify(email), { headers });
-  },
-  getMessage() {
-    return axios.get(api.getMessage(), { headers });
   },
 };

@@ -90,6 +90,8 @@ export default {
               if (res.status === 200) {
                 if (res.data.code === '00000') {
                   this.$store.commit(types.LOGIN);
+                  console.log(res.data.data.roles);
+                  localStorage.setItem('roles', res.data.data.roles.length);
                   this.$router.push({ name: 'index', params: { refresh: 1 } });
                 } else {
                   this.$message({
