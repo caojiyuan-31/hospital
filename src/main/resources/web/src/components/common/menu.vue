@@ -3,6 +3,9 @@
     <div class="contain">
       <div>
         <span @click="redirect(1)" class="tab">首页</span>
+        <span @click="department" class="tab">科室信息</span>
+        <span @click="doctor" class="tab">医生信息</span>
+        <span @click="announcement" class="tab">公告信息</span>
         <span @click="redirect(2)" class="tab" v-if="!isShow">个人中心</span>
 
       </div>
@@ -52,6 +55,15 @@ export default {
     }
   },
   methods: {
+    doctor() {
+      document.querySelector('#doctor').scrollIntoView(true);
+    },
+    department() {
+      document.querySelector('#department').scrollIntoView(true);
+    },
+    announcement() {
+      document.querySelector('#announcement').scrollIntoView(true);
+    },
     redirect(num) {
       if (num === 1) {
         this.$router.push({ name: 'index' });

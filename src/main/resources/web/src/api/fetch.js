@@ -79,4 +79,7 @@ export default {
   updatePassOfEmail(user, check) {
     return axios.post(api.updatePassOfEmail(), { user, check }, { headers });
   },
+  forecastCategory(text) {
+    return axios.post(api.forecastCategory(), text, { headers });
+  },
 };

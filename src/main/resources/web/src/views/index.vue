@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <div class="indexContain">
       <div class="cardBox">
@@ -10,14 +11,15 @@
       </div>
     </div>
 
-    <div style="margin-top: 15px;">
-      <el-input placeholder="请输入内容" v-model="input" >
-        <el-button slot="append" icon="el-icon-search"></el-button>
+    <div class="division"><h3 id="department">选择挂号科室</h3>
+      <h3 style="color: #888;font-weight: 400">--- DEPARTMENTS ---</h3></div>
+
+    <div class="zhineng">
+      <el-input placeholder="请输入症状描述，通过智能分诊帮助您选择挂号科室" v-model="input" >
+        <el-button slot="append" icon="el-icon-search" @click="forecastCategory"></el-button>
       </el-input>
     </div>
 
-    <div class="division"><h3>科室信息</h3>
-      <h3 style="color: #888;font-weight: 400">--- DEPARTMENTS ---</h3></div>
     <div class="cardContain">
       <div class="wrapper-card" :style="'height:'+ h * 333 +'px;'">
         <div class="card" v-for="item in departmentList" :key="item.id">
@@ -32,7 +34,7 @@
 
 
     <div class="division">
-      <h3>医生信息</h3>
+      <h3 id="doctor">选择挂号医生</h3>
       <h3 style="color: #888;font-weight: 400">--- DOCTORS ---</h3>
     </div>
 
@@ -91,7 +93,7 @@
 
 
     <div class="division">
-      <h3>近期公告</h3>
+      <h3 id="announcement">近期公告</h3>
       <h3 style="color: #888;font-weight: 400">--- ANNOUNCEMENTS ---</h3>
     </div>
     <div class="newsContain">
@@ -184,6 +186,35 @@ export default {
     this.getAnnouncement();
   },
   methods: {
+    forecastCategory() {
+      fetch
+        .forecastCategory(this.input)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.$message({
+                message: '智能分诊成功',
+                type: 'success',
+              });
+              localStorage.setItem('text', this.input);
+              this.getDepartmentDetail(res.data.data.id);
+            } else {
+              this.$message({
+                message: res.data.msg,
+                type: 'warning',
+              });
+            }
+          }
+        })
+      // eslint-disable-next-line no-unused-vars
+        .catch((e) => {
+          this.$message({
+            message: '智能分诊失败',
+            type: 'error',
+          });
+        });
+    },
+
     handler() {
       const info = document.getElementById('aboutusInfo') || null;
       const card = document.getElementsByClassName('temp')[0] || null;
@@ -494,5 +525,11 @@ export default {
 
   .selects{
     padding: 0px 0px 30px 0px;
+  }
+
+  .zhineng{
+    margin: 15px 20% 0px 20%;
+    width: 60%;
+    text-align:center;
   }
 </style>

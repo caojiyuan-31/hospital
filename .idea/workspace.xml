@@ -2,29 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2abf5e7b-575e-4120-acb2-a6511e921dbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo5.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo6.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/favicon.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/favicon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/DoctorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/constant/ResultEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/constant/ResultEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/domain/pojo/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/RegisterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ganwuwang/hospital/service/RegisterServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/api/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/api/fetch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/userInfo4.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/views/doctorInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/views/doctorInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/components/common/menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/components/common/menu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/views/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/views/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/views/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/src/views/userInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/src/views/userInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/constant/ResultEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/constant/ResultEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/domain/pojo/Register.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/RegisterServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/ganwuwang/hospital/service/RegisterServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +226,7 @@
       <workItem from="1585274638940" duration="15964000" />
       <workItem from="1585303697054" duration="7473000" />
       <workItem from="1585361289208" duration="18145000" />
-      <workItem from="1585447799296" duration="16943000" />
+      <workItem from="1585447799296" duration="20090000" />
     </task>
     <task id="LOCAL-00001" summary="智能分诊项目毕设">
       <created>1584447595618</created>
@@ -320,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585395118817</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="挂号中心功能">
+      <created>1585479023239</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1585479023240</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +346,8 @@
     <MESSAGE value="主页" />
     <MESSAGE value="详细页面" />
     <MESSAGE value="基础功能完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="基础功能完善" />
+    <MESSAGE value="挂号中心功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="挂号中心功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="105" key="#com.intellij.ide.util.MemberChooser" timestamp="1585363254174">
@@ -373,46 +366,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585135957389" />
-    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1585395113005">
+    <state x="264" y="10" key="CommitChangelistDialog2" timestamp="1585479016437">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1585395113005" />
+    <state x="264" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1585479016437" />
     <state x="549" y="156" key="FileChooserDialogImpl" timestamp="1584447240917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584447240917" />
-    <state width="1493" height="294" key="GridCell.Tab.0.bottom" timestamp="1585478990851">
+    <state width="1493" height="364" key="GridCell.Tab.0.bottom" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585478990851" />
-    <state width="1493" height="294" key="GridCell.Tab.0.center" timestamp="1585478990850">
+    <state width="1493" height="364" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.0.center" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585478990850" />
-    <state width="1493" height="294" key="GridCell.Tab.0.left" timestamp="1585478990850">
+    <state width="1493" height="364" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.0.left" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585478990850" />
-    <state width="1493" height="294" key="GridCell.Tab.0.right" timestamp="1585478990850">
+    <state width="1493" height="364" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.0.right" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585478990850" />
-    <state width="1493" height="294" key="GridCell.Tab.1.bottom" timestamp="1585478990851">
+    <state width="1493" height="364" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.1.bottom" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585478990851" />
-    <state width="1493" height="294" key="GridCell.Tab.1.center" timestamp="1585478990851">
+    <state width="1493" height="364" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.1.center" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585478990851" />
-    <state width="1493" height="294" key="GridCell.Tab.1.left" timestamp="1585478990851">
+    <state width="1493" height="364" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.1.left" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585478990851" />
-    <state width="1493" height="294" key="GridCell.Tab.1.right" timestamp="1585478990851">
+    <state width="1493" height="364" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
+    <state width="1493" height="364" key="GridCell.Tab.1.right" timestamp="1585484667248">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="294" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585478990851" />
+    <state width="1493" height="364" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585484667248" />
     <state width="1493" height="338" key="GridCell.Tab.2.bottom" timestamp="1585147603211">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -437,10 +430,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584413626659" />
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1585395146029">
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1585479037212">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1585395146029" />
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1585479037212" />
     <state x="323" y="151" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584438788633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

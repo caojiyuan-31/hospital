@@ -70,4 +70,7 @@ export default {
   updatePassOfEmail() {
     return `${localhost}/user/updatePassOfEmail`;
   },
+  forecastCategory() {
+    return `${localhost}/data/forecastCategory`;
+  },
 };
