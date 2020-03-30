@@ -5,6 +5,7 @@ import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.domain.results.Result;
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,9 @@ public class FileController {
     private static final String path = "src/main/resources/static/";
     private static final String img = "jpg,png,gif";
 
-    @PostMapping("/upload")
+    @PostMapping("/uploadFile")
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws GlobalException {
         if (file.isEmpty()) {
             return new Result(ResultEnum.FILE_ERROR);
@@ -53,7 +55,6 @@ public class FileController {
 
         String pathName = name + "." + category;
         String filePath = path + pathName;
-        System.out.println(filePath);
         File dest = new File(filePath);
         try {
             dest.createNewFile();

@@ -7,7 +7,6 @@ import cn.ganwuwang.hospital.domain.pojo.LoadUser;
 import cn.ganwuwang.hospital.domain.pojo.User;
 import cn.ganwuwang.hospital.domain.pojo.UserAndCheck;
 import cn.ganwuwang.hospital.domain.query.Page;
-import cn.ganwuwang.hospital.domain.query.Sort;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.domain.results.PageRes;
 import cn.ganwuwang.hospital.domain.results.Result;
@@ -16,6 +15,7 @@ import cn.ganwuwang.hospital.service.MailServiceImpl;
 import cn.ganwuwang.hospital.service.UserServiceImpl;
 import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,10 +47,15 @@ public class UserController {
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
-    public Result getPageList(Page page, List<Sort> sort, User user) throws GlobalException {
+    @Secured("ROLE_ADMIN")
+    public Result getPageList(Integer pageNo, Integer pageSize, String name) throws GlobalException {
 
-        List<User> list = userService.queryPageList(page, sort, user);
-        int total = userService.queryTotal(user);
+        Page page = new Page(pageNo, pageSize);
+        User user = new User();
+        user.setUsername(name);
+
+        List<User> list = userService.queryPageListByName(page, null, user);
+        int total = userService.queryTotalByName(user);
         PageRes pageRes = new PageRes(list, total, page);
 
         return new Result(pageRes);
@@ -77,6 +82,7 @@ public class UserController {
 
     @RequestMapping(value = "/info", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result getInfo(Long id) throws GlobalException {
 
         return new Result(userService.queryObject(id));
@@ -227,6 +233,7 @@ public class UserController {
 
     @RequestMapping(value = "/update", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result updateUser(User user) throws GlobalException {
 
         userService.update(user);
@@ -241,7 +248,7 @@ public class UserController {
         Doctor d = doctorService.queryObject(id);
         User u = userService.queryObject(d.getUserId());
 
-        return new Result(u);
+        return new Result(u.getUsername());
 
     }
 

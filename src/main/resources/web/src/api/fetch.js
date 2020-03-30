@@ -6,14 +6,35 @@ const headers = {
 };
 
 export default {
-  getDepartment() {
-    return axios.get(api.getDepartment());
+  getUserList(pageNo, pageSize, name) {
+    return axios.get(api.getUserList(), { params: { pageNo, pageSize, name } });
+  },
+  getDepartment(pageNo, pageSize) {
+    return axios.get(api.getDepartment(), { params: { pageNo, pageSize } });
   },
   getDepartmentInfo(id) {
     return axios.get(api.getDepartmentInfo(), { params: { id } });
   },
+  addDepartment(department) {
+    return axios.post(api.addDepartment(), department, { headers });
+  },
+  delDepartment(id) {
+    return axios.post(api.delDepartment(), id, { headers });
+  },
+  updateDepartment(department) {
+    return axios.post(api.updateDepartment(), department, { headers });
+  },
   getDoctor(pageNo, pageSize, departmentId, level) {
     return axios.get(api.getDoctor(), { params: { pageNo, pageSize, departmentId, level } });
+  },
+  addDoctor(doctor) {
+    return axios.post(api.addDoctor(), doctor, { headers });
+  },
+  updateDoctor(doctor) {
+    return axios.post(api.updateDoctor(), doctor, { headers });
+  },
+  delDoctor(id) {
+    return axios.post(api.delDoctor(), id, { headers });
   },
   getDoctorInfo(id) {
     return axios.get(api.getDoctorInfo(), { params: { id } });
@@ -47,6 +68,15 @@ export default {
   },
   getAnnouncement(pageNo, pageSize) {
     return axios.get(api.getAnnouncement(), { params: { pageNo, pageSize } });
+  },
+  addAnnouncement(announcement) {
+    return axios.post(api.addAnnouncement(), announcement, { headers });
+  },
+  updateAnnouncement(announcement) {
+    return axios.post(api.updateAnnouncement(), announcement, { headers });
+  },
+  delAnnouncement(id) {
+    return axios.post(api.delAnnouncement(), id, { headers });
   },
   userRegister(user, check) {
     return axios.post(api.userRegister(), { user, check }, { headers });

@@ -40,6 +40,40 @@
 		id,username,password,url,phone,name,email,identity,delete_flag,created_time,modified_time,created_user,modified_user
 	</sql>
 
+    <select id="queryListByUserName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from user
+        where 1=1
+        and (`delete_flag` = 0 or `delete_flag` is null)
+        <if test="query != null">
+            <if test="query.username != null and query.username != '' "> and `username` like concat('%',#{query.username},'%')</if>
+        </if>
+
+        <if test="sort != null" >
+            order by
+            <foreach collection="sort" item="order" separator="," >
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+
+        <if test="page != null" >
+
+            <if test="page.offset >= 0 and page.pageSize > 0" >
+                limit ${page.offset}, ${page.pageSize}
+            </if>
+        </if>
+
+
+    </select>
+
+    <select id="queryTotalByUserName" resultType="int">
+        select count(*) from user
+        where 1=1
+        and (`delete_flag` = 0 or `delete_flag` is null)
+        <if test="query != null">
+            <if test="query.username != null and query.username != '' "> and `username` like concat('%',#{query.username},'%')</if>
+        </if>
+    </select>
+
     <select id="queryObject" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from user where id = #{value}
     </select>

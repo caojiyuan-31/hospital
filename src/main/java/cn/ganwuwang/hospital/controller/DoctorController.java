@@ -7,7 +7,9 @@ import cn.ganwuwang.hospital.domain.results.GlobalException;
 import cn.ganwuwang.hospital.domain.results.PageRes;
 import cn.ganwuwang.hospital.domain.results.Result;
 import cn.ganwuwang.hospital.service.DoctorServiceImpl;
+import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +59,48 @@ public class DoctorController {
         }
 
         return new Result(list.get(0));
+
+    }
+
+    @RequestMapping(value = "/save", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @ResponseBody
+    @Secured("ROLE_ADMIN")
+    public Result save(@RequestBody Doctor doctor) throws GlobalException {
+
+        if(CheckUtils.isEmptyBatch(doctor.getName(), doctor.getLevel(), doctor.getDepartmentName(), doctor.getUrl())
+        || doctor.getUserId() == null || doctor.getAm() == null || doctor.getPm() == null || doctor.getDepartmentId() == null){
+            throw new GlobalException(ResultEnum.DATA_ERROR);
+        }
+
+        Doctor q = new Doctor();
+        q.setUserId(doctor.getUserId());
+        if(doctorService.queryTotal(q) != 0){
+            throw new GlobalException(ResultEnum.DATA_ERROR);
+        }
+
+        doctorService.save(doctor);
+        return new Result();
+
+    }
+
+
+    @RequestMapping(value = "/update", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @ResponseBody
+    @Secured("ROLE_ADMIN")
+    public Result update(@RequestBody Doctor doctor) throws GlobalException {
+
+        doctorService.update(doctor);
+        return new Result();
+
+    }
+
+    @RequestMapping(value = "/delete", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @ResponseBody
+    @Secured("ROLE_ADMIN")
+    public Result delete(@RequestBody Long id) throws GlobalException {
+
+        doctorService.delete(id);
+        return new Result();
 
     }
 

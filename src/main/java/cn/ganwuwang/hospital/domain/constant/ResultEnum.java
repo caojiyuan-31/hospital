@@ -22,6 +22,7 @@ public enum ResultEnum {
     REGISTER_TWO("00015", "未看诊前请勿多次挂号"),
     REGISTER_CANNEL("00016", "该挂号已不可取消"),
     REGISTER_NOT("00017", "不存在挂号"),
+    ACCESS_ERROR("00007", "无权限"),
     IDENTITY_UNKNOW("00018", "请完善身份信息和联系方式");
 
     private ResultEnum(String code, String msg) {

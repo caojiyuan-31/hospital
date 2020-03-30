@@ -169,7 +169,7 @@ export default {
           if (res.status === 200) {
             if (res.data.code === '00000') {
               console.log(res.data.data);
-              this.doctor.name = res.data.data.username;
+              this.doctor.name = res.data.data;
               this.getReplyTree();
             }
           }

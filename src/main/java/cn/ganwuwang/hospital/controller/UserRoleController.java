@@ -10,6 +10,7 @@ import cn.ganwuwang.hospital.domain.results.PageRes;
 import cn.ganwuwang.hospital.domain.results.Result;
 import cn.ganwuwang.hospital.service.UserRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result getPageList(Page page, List<Sort> sort, UserRole userRole) throws GlobalException {
 
         List<UserRole> list = userRoleService.queryPageList(page, sort, userRole);
@@ -38,6 +40,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/info", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result getInfo(Long id) throws GlobalException {
 
         return new Result(userRoleService.queryObject(id));
@@ -47,6 +50,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/save", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result saveUserRole(UserRole userRole) throws GlobalException {
 
         if(userRole.getRoleId() == null || userRole.getUserId() == null){
@@ -60,6 +64,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/update", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result updateUserRole(UserRole userRole) throws GlobalException {
 
         userRoleService.update(userRole);
@@ -69,6 +74,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/delete", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result deleteUserRole(Long id) throws GlobalException {
 
         userRoleService.delete(id);
@@ -78,6 +84,7 @@ public class UserRoleController {
 
     @RequestMapping(value = "/deleteBatch", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public Result deleteBatchUserRole(Long[] ids) throws GlobalException {
 
         userRoleService.deleteBatch(ids);

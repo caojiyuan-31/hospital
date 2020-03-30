@@ -20,6 +20,8 @@ const userInfo = resolve => require(['../views/userInfo.vue'], resolve);
 const departmentInfo = resolve => require(['../views/departmentInfo.vue'], resolve);
 // eslint-disable-next-line global-require,import/no-dynamic-require
 const doctorInfo = resolve => require(['../views/doctorInfo.vue'], resolve);
+// eslint-disable-next-line global-require,import/no-dynamic-require
+const admin = resolve => require(['../views/admin.vue'], resolve);
 
 
 const router = new Router({
@@ -80,6 +82,17 @@ const router = new Router({
           path: '/',
           name: 'userInfo',
           component: userInfo,
+        },
+      ],
+    },
+    {
+      path: '/admin',
+      component: CommonPage,
+      children: [
+        {
+          path: '/',
+          name: 'admin',
+          component: admin,
         },
       ],
     },

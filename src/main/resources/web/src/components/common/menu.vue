@@ -7,6 +7,7 @@
         <span @click="doctor" class="tab">医生信息</span>
         <span @click="announcement" class="tab">公告信息</span>
         <span @click="redirect(2)" class="tab" v-if="!isShow">个人中心</span>
+        <span @click="redirect(5)" class="tab" v-if="!isShow2">管理中心</span>
 
       </div>
       <div>
@@ -40,6 +41,11 @@ export default {
       companyList: [],
       msg: '',
       isShow: true,
+      isShow2: true,
+      newTotal: 0,
+      oldTotal: 0,
+      username: 0,
+      first: true,
     };
   },
   created() {
@@ -53,15 +59,32 @@ export default {
     if (store.state.enter_status !== null) {
       this.isShow = false;
     }
+    if (localStorage.getItem('roles') == 3) {
+      this.isShow2 = false;
+    }
+    this.getSelfInfo();
+    window.setInterval(() => {
+      setTimeout(this.getReply(), 0);
+      if (this.oldTotal !== this.newTotal) {
+        this.$message({
+          type: 'success',
+          message: '您有新的回复',
+        });
+        this.oldTotal = this.newTotal;
+      }
+    }, 10000);
   },
   methods: {
     doctor() {
+      this.redirect(1);
       document.querySelector('#doctor').scrollIntoView(true);
     },
     department() {
+      this.redirect(1);
       document.querySelector('#department').scrollIntoView(true);
     },
     announcement() {
+      this.redirect(1);
       document.querySelector('#announcement').scrollIntoView(true);
     },
     redirect(num) {
@@ -73,6 +96,8 @@ export default {
         this.$router.push({ name: 'infoCenter' });
       } else if (num === 4) {
         this.$router.push({ name: 'login' });
+      } else if (num === 5) {
+        this.$router.push({ name: 'admin' });
       }
     },
     toregister() {
@@ -93,6 +118,36 @@ export default {
         })
         .catch((e) => {
           console.log(e);
+        });
+    },
+    getSelfInfo() {
+      fetch
+        .getSelfInfo()
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.username = res.data.data.username;
+            this.getReply();
+          } else {
+            this.$message({
+              type: 'success',
+              message: '登录后才能使用挂号和智能分诊功能',
+            });
+          }
+        });
+    },
+
+    getReply() {
+      fetch.getReply(1, 20, this.username)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.newTotal = res.data.data.totalCount;
+              if (this.first) {
+                this.oldTotal = res.data.data.totalCount;
+                this.first = false;
+              }
+            }
+          }
         });
     },
   },

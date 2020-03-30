@@ -153,7 +153,7 @@ export default {
         { img: 'http://localhost:8080/upload/lb1.jpg' },
         { img: 'http://localhost:8080/upload/lb2.jpg' },
         { img: 'http://localhost:8080/upload/lb3.jpg' },
-        { img: 'http://localhost:8080/upload/lb4.jpeg' },
+        { img: 'http://localhost:8080/upload/lb4.jpg' },
       ],
       activeIndex2: '1',
       departmentList: [],
@@ -240,7 +240,7 @@ export default {
     },
 
     getDepartment() {
-      fetch.getDepartment()
+      fetch.getDepartment(1, 20)
         .then((res) => {
           if (res.status === 200) {
             if (res.data.code === '00000') {

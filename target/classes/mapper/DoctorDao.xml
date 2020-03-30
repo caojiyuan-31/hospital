@@ -89,7 +89,7 @@
         update doctor
         <set>
             <if test="userId != null">`user_id` = #{userId},</if>
-            <if test="name != null and query.name != '' ">`name` = #{name},</if>
+            <if test="name != null">`name` = #{name},</if>
             <if test="departmentId != null">`department_id` = #{departmentId},</if>
             <if test="departmentName != null">`department_name` = #{departmentName},</if>
             <if test="schoolName != null">`school_name` = #{schoolName},</if>
@@ -97,7 +97,7 @@
             <if test="url != null">`url` = #{url},</if>
             <if test="am != null">`am` = #{am},</if>
             <if test="pm != null">`pm` = #{pm},</if>
-            <if test="skill != null and query.skill != '' ">`skill` = #{skill},</if>
+            <if test="skill != null">`skill` = #{skill},</if>
             <if test="description != null">`description` = #{description},</if>
             <if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
             <if test="createdTime != null">`created_time` = now(), </if>

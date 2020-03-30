@@ -13,6 +13,7 @@ import cn.ganwuwang.hospital.service.UserServiceImpl;
 import cn.ganwuwang.hospital.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_USER")
     public Result getPageList(Integer pageNo, Integer pageSize,
                               Long userId, Long doctorId, @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, Integer scope, Integer status) throws GlobalException {
 
@@ -58,6 +60,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/save", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_USER")
     public Result saveRegister(@RequestBody Register register) throws GlobalException {
 
         if(register.getDoctorId() == null || register.getDate() == null || register.getScope() == null
@@ -90,6 +93,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/update", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_DOCTOR")
     public Result updateRegister(@RequestBody Register register) throws GlobalException {
 
         registerService.update(register);
@@ -99,6 +103,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/cancel", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_USER")
     public Result cancelStatus() throws GlobalException {
 
         Object o = CheckUtils.getAuthentication().getPrincipal();

@@ -34,6 +34,40 @@ public class UserServiceImpl implements UserDetailsService {
     @Autowired
     private UserRoleServiceImpl userRoleService;
 
+    public List<User> queryPageListByName(Page page, List<Sort> sort, User user) throws GlobalException {
+
+        List<User> result = null;
+        PageQuery query = new PageQuery(user);
+        query.setPage(page);
+        if(sort != null){
+            query.setSort(sort);
+        }
+
+        try{
+            result = userDao.queryListByUserName(query);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return result;
+    }
+
+    public Integer queryTotalByName(User user) throws GlobalException {
+
+        Integer result = 0;
+        PageQuery query = new PageQuery(user);
+
+        try{
+            result = userDao.queryTotalByUserName(query);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        return result;
+    }
+
     public List<User> queryPageList(Page page, List<Sort> sort, User user) throws GlobalException {
 
         List<User> result = null;

@@ -1,6 +1,9 @@
 const localhost = 'http://localhost:8080';
 
 export default {
+  getUserList() {
+    return `${localhost}/user/list`;
+  },
   userRegister() {
     return `${localhost}/user/save`;
   },
@@ -19,8 +22,26 @@ export default {
   getDepartmentInfo() {
     return `${localhost}/department/info`;
   },
+  addDepartment() {
+    return `${localhost}/department/save`;
+  },
+  delDepartment() {
+    return `${localhost}/department/delete`;
+  },
+  updateDepartment() {
+    return `${localhost}/department/update`;
+  },
   getDoctor() {
     return `${localhost}/doctor/list`;
+  },
+  addDoctor() {
+    return `${localhost}/doctor/save`;
+  },
+  updateDoctor() {
+    return `${localhost}/doctor/update`;
+  },
+  delDoctor() {
+    return `${localhost}/doctor/delete`;
   },
   getDoctorInfo() {
     return `${localhost}/doctor/info`;
@@ -54,6 +75,15 @@ export default {
   },
   getAnnouncement() {
     return `${localhost}/announcement/list`;
+  },
+  addAnnouncement() {
+    return `${localhost}/announcement/save`;
+  },
+  updateAnnouncement() {
+    return `${localhost}/announcement/update`;
+  },
+  delAnnouncement() {
+    return `${localhost}/announcement/delete`;
   },
   sendCheck() {
     return `${localhost}/user/sendCheckMail`;

@@ -1,0 +1,456 @@
+<template>
+  <div>
+
+    <div  class = "selects1234">
+      <el-select v-model="doctorPage.departmentId" placeholder="请选择科室" @change="getDoctor()">
+        <el-option
+          v-for="item in departmentList"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+          >
+        </el-option>
+      </el-select>
+      <el-select v-model="doctorPage.level" placeholder="请选择级别" @change="getDoctor()">
+        <el-option
+          v-for="item in level"
+          :key="item.name"
+          :label="item.name"
+          :value="item.name"
+          >
+        </el-option>
+      </el-select>
+    </div>
+
+    <el-dialog
+      title="修改医生信息"
+      :modal=false
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+       <p class="introduce12">上传医生图片</p>
+      <el-upload
+        class="avatar-uploader"
+        action="http://localhost:8080/file/uploadFile"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :with-credentials='true'
+        :before-upload="beforeAvatarUpload">
+        <img v-if="doctor.url" :src="doctor.url" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+      <el-input
+        type="text"
+        placeholder="请输入医生名"
+        v-model="doctor.name"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <el-select v-model="doctor.departmentId" placeholder="请选择科室" @change="selectDepartment">
+        <el-option
+          v-for="item in departmentList"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+          >
+        </el-option>
+      </el-select>
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入学历介绍"
+        v-model="doctor.schoolName"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <el-select v-model="doctor.level" placeholder="请选择级别">
+        <el-option
+          v-for="item in level"
+          :key="item.name"
+          :label="item.name"
+          :value="item.name"
+          >
+        </el-option>
+      </el-select>
+      <el-input
+        type="text"
+        placeholder="请输入am挂号限制"
+        v-model="doctor.am"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <el-input
+        type="text"
+        placeholder="请输入pm挂号限制"
+        v-model="doctor.pm"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入技能"
+        v-model="doctor.skill"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入描述"
+        v-model="doctor.description"
+        style="width:100%; margin : 10px 0px 10px 0px;">
+      </el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="clickClose">取 消</el-button>
+        <el-button type="primary" @click="updateDoctor">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-table
+    :data="doctorList"
+    border
+    style="width: 100%">
+    <el-table-column
+      fixed
+      prop="id"
+      label="id"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      label="医生图片"
+      width="120">
+      <template slot-scope="scope">
+        <div class="demo-image__preview">
+          <el-image
+            style="width: 100px; height: 80px"
+            :src=scope.row.url>
+          </el-image>
+        </div>
+      </template>
+    </el-table-column>
+    <el-table-column
+      prop="name"
+      label="医生名"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="departmentName"
+      label="科室名"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="level"
+      label="级别"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="am"
+      label="am挂号限制"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="pm"
+      label="pm挂号限制"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="schoolName"
+      label="学历"
+      width="150">
+    </el-table-column>
+    <el-table-column
+      prop="skill"
+      label="技能"
+      width="120">
+    </el-table-column>
+    <el-table-column
+      prop="description"
+      label="介绍"
+      width="200">
+    </el-table-column>
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="150">
+      <template slot-scope="scope">
+        <el-button @click="updateRow(scope.row)" size="small" type="primary">修改</el-button>
+        <el-button @click="deleteRow(scope.row)" size="small" type="danger">删除</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+
+    <div class = "selects">
+        <el-pagination
+        background
+        @size-change="doctorSizeChange"
+        @current-change="doctorCurrentChange"
+        :current-page="doctorPage.pageNo"
+        :page-sizes="[5, 10]"
+        :page-size="doctorPage.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="doctorTotal">
+      </el-pagination>
+    </div>
+
+  </div>
+</template>
+
+<script>/* eslint-disable indent */
+
+import fetch from '../api/fetch';
+
+export default {
+  data() {
+    return {
+      dialogVisible: false,
+      refresh: 0,
+      doctorList: [],
+      departmentList: [],
+      level: [
+        { name: '普通' }, { name: '主任' }, { name: '副主任' },
+      ],
+      doctor: {
+        id: '',
+        name: '',
+        departmentId: '',
+        departmentName: '',
+        schoolName: '',
+        level: '',
+        url: null,
+        am: '',
+        pm: '',
+        skill: '',
+        description: '',
+      },
+      doctorPage: {
+        pageNo: 1,
+        pageSize: 5,
+        departmentId: null,
+        level: null,
+      },
+      doctorTotal: 0,
+    };
+  },
+
+  mounted() {
+    this.getDepartment();
+    this.getDoctor();
+  },
+
+  watch: {
+    refresh() {
+      location.reload();
+    },
+  },
+
+  methods: {
+    selectDepartment(id) {
+      let obj = null;
+      obj = this.departmentList.find(item => item.id === id);
+      this.doctor.departmentName = obj.name;
+    },
+
+    getDepartment() {
+      fetch.getDepartment(1, 20)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.departmentList = res.data.data.list;
+            }
+          }
+        });
+    },
+
+    handleAvatarSuccess(res, file) {
+      console.log(res.data);
+      this.doctor.url = res.data;
+    },
+
+    beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+    },
+
+    updateRow(row) {
+      this.doctor.id = row.id;
+      this.doctor.name = row.name;
+      this.doctor.departmentId = row.departmentId;
+      this.doctor.departmentName = row.departmentName;
+      this.doctor.schoolName = row.schoolName;
+      this.doctor.level = row.level;
+      this.doctor.url = row.url;
+      this.doctor.am = row.am;
+      this.doctor.pm = row.pm;
+      this.doctor.skill = row.skill;
+      this.doctor.description = row.description;
+      this.dialogVisible = true;
+    },
+
+    delDoctor(id) {
+      fetch
+        .delDoctor(id)
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.$message({
+                message: '删除成功',
+                type: 'success',
+              });
+            this.getDoctor();
+            this.clickClose();
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data.msg,
+            });
+            this.clickClose();
+          }
+        })
+        .catch((err) => {
+          this.$message({
+            type: '删除失败',
+            message: err,
+          });
+          this.clickClose();
+        });
+    },
+
+    updateDoctor() {
+      fetch
+        .updateDoctor(this.doctor)
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.$message({
+                message: '更新成功',
+                type: 'success',
+              });
+            this.getDoctor();
+            this.clickClose();
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data.msg,
+            });
+            this.clickClose();
+          }
+        })
+        .catch((err) => {
+          this.$message({
+            type: '更新失败',
+            message: err,
+          });
+          this.clickClose();
+        });
+    },
+
+    getDoctor() {
+      fetch.getDoctor(this.doctorPage.pageNo, this.doctorPage.pageSize, this.doctorPage.departmentId, this.doctorPage.level)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === '00000') {
+              this.doctorList = res.data.data.list;
+              this.doctorTotal = res.data.data.totalCount;
+            }
+          }
+        });
+    },
+
+    clickClose() {
+      this.doctor.id = null;
+      this.doctor.name = null;
+      this.doctor.departmentId = null;
+      this.doctor.departmentName = null;
+      this.doctor.schoolName = null;
+      this.doctor.level = null;
+      this.doctor.url = null;
+      this.doctor.am = null;
+      this.doctor.pm = null;
+      this.doctor.skill = null;
+      this.doctor.description = null;
+      this.dialogVisible = false;
+    },
+
+    handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then((_) => {
+            this.clickClose();
+            done();
+          })
+          .catch((_) => {});
+    },
+
+    deleteRow(row) {
+        this.$confirm('此操作将删除该科室, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }).then(() => {
+          this.delDoctor(row.id);
+        }).catch(() => {
+        });
+    },
+
+    doctorSizeChange(val) {
+      this.doctorPage.pageSize = val;
+      this.getDoctor();
+    },
+    doctorCurrentChange(val) {
+      this.doctorPage.pageNo = val;
+      this.getDoctor();
+    },
+
+  },
+};
+</script>
+
+
+<style>
+  .introduce123 {
+    margin-left: 20px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .selects1234 {
+    padding: 10px 20px 10px 0px;
+    float:left;
+  }
+
+  .introduce12 {
+    margin-left: 0px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+</style>
+

@@ -82,6 +82,7 @@ export default {
         pageSize: 10,
         toName: '',
       },
+      oldTotal: 0,
       replyTotal: 0,
     };
   },
@@ -164,6 +165,7 @@ export default {
           if (res.data.code === '00000') {
             this.replyPage.toName = res.data.data.username;
             this.getReply();
+            this.oldTotal = this.replyTotal;
           } else {
             this.$message({
               type: 'warning',

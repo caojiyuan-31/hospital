@@ -71,7 +71,7 @@
         update announcement
         <set>
             <if test="title != null">`title` = #{title},</if>
-            <if test="text != text">`text` = #{text},</if>
+            <if test="text != null">`text` = #{text},</if>
             <if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
             <if test="createdTime != null">`created_time` = now(), </if>
             <if test="modifiedTime != null">`modified_time` = now(), </if>

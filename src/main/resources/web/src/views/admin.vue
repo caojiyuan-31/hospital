@@ -21,47 +21,35 @@
 
 <script>/* eslint-disable indent */
 
-import UserInfo from '../components/userInfo';
-import UserInfo2 from '../components/userInfo2';
-import UserInfo3 from '../components/userInfo3';
-import UserInfo4 from '../components/userInfo4';
-import UserInfo5 from '../components/userInfo5';
-import UserInfo6 from '../components/userInfo6';
+import Admin from '../components/admin';
+import Admin2 from '../components/admin2';
+import Admin3 from '../components/admin3';
+import Admin4 from '../components/admin4';
 
 export default {
   data() {
     return {
       activeName: '',
       editableTabs: [{
-        title: '个人信息',
+        title: '公告管理',
         name: '1',
-        content: 'UserInfo',
+        content: 'Admin',
         isShow: true,
       }, {
-        title: '修改邮箱',
+        title: '科室管理',
         name: '2',
-        content: 'UserInfo2',
+        content: 'Admin2',
         isShow: true,
       }, {
-        title: '修改密码',
+        title: '医生管理',
         name: '3',
-        content: 'UserInfo3',
+        content: 'Admin3',
         isShow: true,
       }, {
-        title: '消息中心',
+        title: '用户管理',
         name: '4',
-        content: 'UserInfo4',
+        content: 'Admin4',
         isShow: true,
-      }, {
-        title: '挂号中心',
-        name: '5',
-        content: 'UserInfo5',
-        isShow: false,
-      }, {
-        title: '挂号中心',
-        name: '6',
-        content: 'UserInfo6',
-        isShow: false,
       }],
       activeIndex2: '1',
       btnText: '取消',
@@ -71,17 +59,6 @@ export default {
   mounted() {
     this.activeName = this.editableTabs[0].name;
     this.refresh = this.$route.params.refresh !== undefined ? this.$route.params.refresh : 0;
-    if (localStorage.getItem('roles') == 1) {
-        this.editableTabs[4].isShow = true;
-    }
-
-    if (localStorage.getItem('roles') == 2) {
-        this.editableTabs[5].isShow = true;
-    }
-
-    if (localStorage.getItem('roles') == 3) {
-        this.editableTabs[3].isShow = false;
-    }
   },
   watch: {
     refresh() {
@@ -89,12 +66,10 @@ export default {
     },
   },
   components: {
-    UserInfo,
-    UserInfo2,
-    UserInfo3,
-    UserInfo4,
-    UserInfo5,
-    UserInfo6,
+    Admin,
+    Admin2,
+    Admin3,
+    Admin4,
   },
   methods: {
 

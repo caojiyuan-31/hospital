@@ -18,11 +18,14 @@ spring:
           ssl:
             enable: true
 
-  mvc.favicon.enabled:  false
   servlet:
     multipart:
-    max-file-size: 100MB
-    max-request-size: 100MB
+      # 启用
+      enabled: true
+      # 上传文件单个限制
+      max-file-size: 2MB
+      # 总限制
+      max-request-size: 2MB
 
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/hospital
