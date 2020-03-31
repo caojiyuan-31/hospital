@@ -246,7 +246,6 @@ export default {
                 message: '升级成功',
                 type: 'success',
               });
-            this.getDoctor();
             this.clickClose();
           } else {
             this.$message({

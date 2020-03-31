@@ -7,27 +7,10 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/': {
-          target: 'http://localhost:10015',
-          pathRewrite: {"^/" : ""},
-      },
-      '/test': {
-        target: 'http://localhost:10015',
-        pathRewrite: {'^/test': ''},
-      },
-      '/api/admin': {
-        target: 'http://localhost:10015/',
-        changeOrigin: true,
-        cookieDomainRewrite: {
-          "pqdong.com": "localhost",
-        }
-      }
-    },
     disableHostCheck:true,
     // Various Dev Server settings
     host: '127.0.0.1', // can be overwritten by process.env.HOST
-    port: 10016, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 80, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

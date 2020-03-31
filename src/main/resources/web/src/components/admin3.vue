@@ -45,7 +45,7 @@
         v-model="doctor.name"
         style="width:100%; margin : 10px 0px 10px 0px;">
       </el-input>
-      <el-select v-model="doctor.departmentId" placeholder="请选择科室" @change="selectDepartment">
+      <el-select v-model="doctor.departmentId" placeholder="请选择科室" @change="selectDepartment" style="width:100%;">
         <el-option
           v-for="item in departmentList"
           :key="item.id"
@@ -61,7 +61,7 @@
         v-model="doctor.schoolName"
         style="width:100%; margin : 10px 0px 10px 0px;">
       </el-input>
-      <el-select v-model="doctor.level" placeholder="请选择级别">
+      <el-select v-model="doctor.level" placeholder="请选择级别" style="width:100%;">
         <el-option
           v-for="item in level"
           :key="item.name"
