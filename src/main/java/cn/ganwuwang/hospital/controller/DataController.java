@@ -28,9 +28,6 @@ public class DataController {
     private ProbabilityServiceImpl probabilityService;
 
     @Autowired
-    private DepartmentServiceImpl departmentService;
-
-    @Autowired
     private DataManager dm;
 
     @RequestMapping(value = "/forecastCategory", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
@@ -48,10 +45,12 @@ public class DataController {
         if(CheckUtils.isEmptyBatch(text)){
             return new Result(ResultEnum.DATA_ERROR);
         }
-        String name = classify(text);
+        /*String name = classify(text);
         Department d = new Department();
         d.setName(name);
-        Department re = departmentService.queryPageList(new Page(1, 20), null, d).get(0);
+        Department re = departmentService.queryPageList(new Page(1, 20), null, d).get(0);*/
+
+        List<CategoryRes> re = classify(text);
 
         return new Result(re);
 
@@ -79,7 +78,7 @@ public class DataController {
         return ret;
     }
 
-    private String classify(String text) throws GlobalException {
+    private List<CategoryRes> classify(String text) throws GlobalException {
         String[] terms = null;
         terms= TextUtils.ChineseSpliter(text).split(",");//中文分词处理(分词后结果已去除停用词）
 
@@ -119,7 +118,8 @@ public class DataController {
             }
         });
         //返回概率最大的分类
-        return crs.get(0).getCategory();
+        //return crs.get(0).getCategory();
+        return crs;
     }
 
 }

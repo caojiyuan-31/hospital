@@ -32,6 +32,11 @@
     border
     style="width: 100%">
     <el-table-column
+      prop="id"
+      label="号码"
+      width="80">
+    </el-table-column>
+    <el-table-column
       fixed
       label="日期"
       width="200">

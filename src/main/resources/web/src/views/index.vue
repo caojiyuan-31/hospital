@@ -1,6 +1,45 @@
 <template>
 
   <div>
+    <el-dialog
+      title="智能分诊结果"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+
+     <el-table
+    :data="categoryList"
+    border
+    style="width: 100%">
+    <el-table-column
+      fixed
+      prop="category"
+      label="科室名"
+      width="100">
+    </el-table-column>
+    <el-table-column
+      prop="probility"
+      label="推荐系数"
+      width="340">
+    </el-table-column>
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="135">
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="scopeClick(scope.row)">选择该科室挂号</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
     <div class="indexContain">
       <div class="cardBox">
         <el-carousel trigger="click" height="400px" style="position: sticky;">
@@ -147,6 +186,8 @@ import store from '../store/store';
 export default {
   data() {
     return {
+      categoryList: [],
+      dialogVisible: false,
       input: '',
       h: 3,
       crouselImg: [
@@ -186,6 +227,15 @@ export default {
     this.getAnnouncement();
   },
   methods: {
+    scopeClick(row) {
+      this.departmentList.forEach((item) => {
+        if (item.name == row.category) {
+          console.log(item.id);
+          this.getDepartmentDetail(item.id);
+        }
+      });
+    },
+
     forecastCategory() {
       fetch
         .forecastCategory(this.input)
@@ -197,7 +247,8 @@ export default {
                 type: 'success',
               });
               localStorage.setItem('text', this.input);
-              this.getDepartmentDetail(res.data.data.id);
+              this.categoryList = res.data.data;
+              this.dialogVisible = true;
             } else {
               this.$message({
                 message: res.data.msg,
@@ -297,6 +348,14 @@ export default {
             }
           }
         });
+    },
+
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
     },
 
   },

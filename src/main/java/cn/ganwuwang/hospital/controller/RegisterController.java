@@ -34,6 +34,47 @@ public class RegisterController {
     @Autowired
     private UserServiceImpl userService;
 
+    @RequestMapping(value = "/num", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
+    @ResponseBody
+    @Secured("ROLE_USER")
+    public Result getNum(Long userId, Long doctorId, @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, Integer scope) throws GlobalException {
+
+        Object o = CheckUtils.getAuthentication().getPrincipal();
+        LoadUser u = null;
+        if(o instanceof LoadUser){
+            u = (LoadUser)o;
+        }else {
+            throw new GlobalException(ResultEnum.LOAD_ERROR);
+        }
+        Register q = new Register();
+        q.setUserId(u.getId());
+        q.setStatus(StatusEnum.ON_REGISTER.getStatus());
+        List<Register> list =  registerService.queryPageList(new Page(1,20), null, q);
+        if(list.size() == 0){
+            throw new GlobalException(ResultEnum.REGISTER_NOT);
+        }
+        Register register = list.get(0);
+
+        List<Sort> sort = new ArrayList<Sort>();
+        Sort s = new Sort(Sort.Direction.ASC, "created_time");
+        sort.add(s);
+        Register status = new Register();
+        status.setStatus(StatusEnum.ON_REGISTER.getStatus());
+        status.setScope(register.getScope());
+        status.setDate(register.getDate());
+        status.setDoctorId(register.getDoctorId());
+        List<Register> list2 =  registerService.queryPageList(new Page(1,20), sort, status);
+        Integer re = 0;
+        for(Register r : list2){
+            re++;
+            if(r.getUserId().equals(u.getId())){
+                break;
+            }
+        }
+
+        return new Result(re);
+    }
+
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.GET)
     @ResponseBody
     @Secured("ROLE_USER")
@@ -84,7 +125,7 @@ public class RegisterController {
         register.setUserId(u.getId());
         register.setUserName(u.getUsername());
         register.setStatus(StatusEnum.ON_REGISTER.getStatus());
-        registerService.save(register);
+        registerService.save(u.getEmail(), register);
 
         return new Result();
 

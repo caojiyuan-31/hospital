@@ -64,6 +64,9 @@ export default {
   getRegister() {
     return `${localhost}/register/list`;
   },
+  getRegisterNum() {
+    return `${localhost}/register/num`;
+  },
   cancelRegister() {
     return `${localhost}/register/cancel`;
   },

@@ -1,6 +1,7 @@
 package cn.ganwuwang.hospital.service;
 
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
+import cn.ganwuwang.hospital.domain.pojo.Register;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -8,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +43,25 @@ public class MailServiceImpl {
         sendSimpleMail(to, subject, content);
         System.out.println(check);
         redisTemplate.opsForValue().set(to,check, 60 , TimeUnit.SECONDS);
+    }
+
+    public void sendRegister(String to, Register register, Integer num){
+
+
+        String scope = null;
+        if(register.getScope() == 0){
+            scope = "9:00-12:00";
+        }else {
+            scope = "14:00-18:00";
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = formatter.format(register.getDate());
+
+        String subject = "智能分诊平台挂号提示";
+        String content = "用户："+register.getUserName()+",您已成功在"+dateString+"日"+scope+"时间段挂号"+register.getDoctorName()+"医生," +
+                "\n挂号号码为："+register.getId()+",您为该时段第"+num+"名看诊用户，请耐心等待。";
+        sendSimpleMail(to, subject, content);
+
     }
 
     /**

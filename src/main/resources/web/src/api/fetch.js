@@ -57,6 +57,9 @@ export default {
   getRegister(pageNo, pageSize, userId, doctorId, date, scope, status) {
     return axios.get(api.getRegister(), { params: { pageNo, pageSize, userId, doctorId, date, scope, status } });
   },
+  getRegisterNum() {
+    return axios.get(api.getRegisterNum());
+  },
   cancelRegister() {
     return axios.post(api.cancelRegister());
   },

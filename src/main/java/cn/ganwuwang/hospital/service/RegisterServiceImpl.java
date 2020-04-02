@@ -25,6 +25,9 @@ public class RegisterServiceImpl {
     @Autowired
     private DoctorServiceImpl doctorService;
 
+    @Autowired
+    private MailServiceImpl mailService;
+
     public List<Register> queryPageList(Page page, List<Sort> sort, Register register) throws GlobalException {
 
         List<Register> result = null;
@@ -72,7 +75,7 @@ public class RegisterServiceImpl {
     }
 
     @Transactional
-    public void save(Register register) throws GlobalException {
+    public void save(String to, Register register) throws GlobalException {
 
         Doctor doctor = doctorService.queryObject(register.getDoctorId());
         if(doctor == null){
@@ -105,9 +108,12 @@ public class RegisterServiceImpl {
             register.setCreatedUser(CheckUtils.getAuthentication().getName());
             try{
                 registerDao.save(register);
-                if(queryTotal(q) > count){
+                Integer num = queryTotal(q);
+                if(num > count){
                     throw new GlobalException(ResultEnum.REGISTER_FULL);
                 }
+                mailService.sendRegister(to, register, num);
+
             }catch (Exception e){
                 e.printStackTrace();
                 throw new GlobalException(e, ResultEnum.DB_ERROR);

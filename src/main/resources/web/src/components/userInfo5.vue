@@ -4,10 +4,19 @@
       <el-button type="warning" round @click="open">取消当前挂号</el-button>
     </div>
 
+    <div class="introduce2" v-if="isShow">
+      <p>您当前为排队挂号的第{{registerOldNum}}人</p>
+    </div>
+
     <el-table
     :data="registerList"
     border
     style="width: 100%">
+    <el-table-column
+      prop="id"
+      label="号码"
+      width="80">
+    </el-table-column>
     <el-table-column
       fixed
       label="日期"
@@ -70,6 +79,7 @@ import fetch from '../api/fetch';
 export default {
   data() {
     return {
+      isShow: false,
       refresh: 0,
       registerList: [],
       registerPage: {
@@ -82,6 +92,9 @@ export default {
         status: '',
       },
       registerTotal: 0,
+      registerOldNum: 0,
+      registerNewNum: 0,
+      first: true,
     };
   },
   filters: {
@@ -104,6 +117,16 @@ export default {
   },
   mounted() {
     this.getSelfInfo();
+    window.setInterval(() => {
+      setTimeout(this.getRegisterNum(), 0);
+      if (this.registerOldNum !== this.registerNewNum) {
+        this.$message({
+          type: 'success',
+          message: '您的挂号排队位置有变动',
+        });
+        this.registerOldNum = this.registerNewNum;
+      }
+    }, 10000);
   },
   watch: {
     refresh() {
@@ -174,6 +197,27 @@ export default {
         });
     },
 
+    getRegisterNum() {
+      fetch
+        .getRegisterNum()
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.registerNewNum = res.data.data;
+            if (this.first) {
+                this.registerOldNum = res.data.data;
+                this.first = false;
+            }
+            this.isShow = true;
+          } else {
+            this.isShow = false;
+          }
+        })
+        .catch((err) => {
+          this.isShow = false;
+        });
+    },
+
+
     registerSizeChange(val) {
       this.registerPage.pageSize = val;
       this.getRegister();
@@ -205,9 +249,17 @@ export default {
 
 
 <style>
-.introduce123 {
+  .introduce123 {
     margin-left: 20px;
     height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .introduce2 {
+    margin-left: 20px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
