@@ -3,10 +3,13 @@ package cn.ganwuwang.hospital.service;
 import cn.ganwuwang.hospital.dao.DataDao;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.pojo.Data;
+import cn.ganwuwang.hospital.domain.pojo.Doctor;
+import cn.ganwuwang.hospital.domain.pojo.Register;
 import cn.ganwuwang.hospital.domain.query.Page;
 import cn.ganwuwang.hospital.domain.query.PageQuery;
 import cn.ganwuwang.hospital.domain.results.GlobalException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,34 @@ public class DataServiceImpl {
 
     @Autowired
     private DataDao dataDao;
+
+    @Autowired
+    private DoctorServiceImpl doctorService;
+
+    @CacheEvict(cacheNames = {"pc", "px", "pxc", "CountContainKey", "CountContainKeyOfCategory", "DataCountOfCategory", "DataCount", "Category"})
+    public Integer saveRegister(List<Register> list){
+
+        Integer re = 0;
+
+        Data data = new Data();
+        data.setDeleteFlag(false);
+        data.setCreatedUser("SYSTEM");
+        try{
+            for(Register r : list){
+                Doctor d = doctorService.queryObject(r.getDoctorId());
+                data.setCategory(d.getDepartmentName());
+                data.setText(r.getText());
+                dataDao.save(data);
+                re++;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return re;
+        }
+
+        return re;
+
+    }
 
     public List<Data> queryListByCategory(String category) throws GlobalException {
 

@@ -3,6 +3,7 @@ package cn.ganwuwang.hospital.service;
 import cn.ganwuwang.hospital.dao.RegisterDao;
 import cn.ganwuwang.hospital.domain.constant.ResultEnum;
 import cn.ganwuwang.hospital.domain.constant.StatusEnum;
+import cn.ganwuwang.hospital.domain.pojo.Dictionary;
 import cn.ganwuwang.hospital.domain.pojo.Doctor;
 import cn.ganwuwang.hospital.domain.pojo.Register;
 import cn.ganwuwang.hospital.domain.query.Page;
@@ -27,6 +28,12 @@ public class RegisterServiceImpl {
 
     @Autowired
     private MailServiceImpl mailService;
+
+    @Autowired
+    private DictionaryServiceImpl dictionaryService;
+
+    @Autowired
+    private DataServiceImpl dataService;
 
     public List<Register> queryPageList(Page page, List<Sort> sort, Register register) throws GlobalException {
 
@@ -124,6 +131,7 @@ public class RegisterServiceImpl {
 
     }
 
+    @Transactional
     public void update(Register register) throws GlobalException {
 
         register.setModifiedUser(CheckUtils.getAuthentication().getName());
@@ -132,6 +140,20 @@ public class RegisterServiceImpl {
         }catch (Exception e){
             e.printStackTrace();
             throw new GlobalException(e, ResultEnum.DB_ERROR);
+        }
+
+        if(StatusEnum.ON_DIAGNOSE.getStatus().equals(register.getStatus())){
+            Register q = new Register();
+            q.setStatus(StatusEnum.ON_DIAGNOSE.getStatus());
+            Integer total = queryTotal(q);
+            Dictionary dictionary = dictionaryService.queryObject(new Long(1));
+            Integer oldTotal = Integer.parseInt(dictionary.getDicvalue());
+            if(total > (oldTotal + 1000)){
+                List<Register> list = queryPageList(new Page(total/1000, 1000), null, q);
+                Integer s = dataService.saveRegister(list);
+                dictionary.setDicvalue(String.valueOf(oldTotal + s));
+                dictionaryService.update(dictionary);
+            }
         }
 
     }
