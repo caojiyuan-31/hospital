@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     sendCode() {
-      const TIME_COUNT = 60;
+      const TIME_COUNT = 120;
       if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.user.newEmail)) return;
       fetch
         .sendCheck(this.user.newEmail)

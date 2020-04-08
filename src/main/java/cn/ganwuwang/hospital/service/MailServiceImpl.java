@@ -10,7 +10,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -39,10 +38,10 @@ public class MailServiceImpl {
         }
         Integer check = (int)((Math.random()*9+1)*1000);
         String subject = "智能分诊平台邮箱验证码";
-        String content = "验证码为："+check+",有效时间为60秒。";
+        String content = "验证码为："+check+",有效时间为120秒。";
         sendSimpleMail(to, subject, content);
         System.out.println(check);
-        redisTemplate.opsForValue().set(to,check, 60 , TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(to,check, 120 , TimeUnit.SECONDS);
     }
 
     public void sendRegister(String to, Register register, Integer num){

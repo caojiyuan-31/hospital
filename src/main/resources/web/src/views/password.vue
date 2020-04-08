@@ -15,7 +15,7 @@
           <el-input type="text" v-model="registerInfo.email" auto-complete="off" placeholder="邮箱"></el-input>
         </el-form-item>
         <el-form-item prop="check">
-          <el-input v-model.number="registerInfo.check" style="width: 270px;padding-right: 10px;"
+          <el-input v-model.number="registerInfo.check" style="width: 267px;padding-right: 10px;"
                     placeholder="验证码"></el-input>
           <el-button :disabled="isAble" @click="sendCode">{{this.msg}}</el-button>
         </el-form-item>
@@ -106,7 +106,7 @@ export default {
     },
 
     sendCode() {
-      const TIME_COUNT = 60;
+      const TIME_COUNT = 120;
       if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.registerInfo.email)) return;
       fetch
         .sendCheck(this.registerInfo.email)

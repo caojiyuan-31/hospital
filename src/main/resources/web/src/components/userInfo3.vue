@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     sendCode() {
-      const TIME_COUNT = 60;
+      const TIME_COUNT = 120;
       fetch
         .sendCheck()
         .then((res) => {
