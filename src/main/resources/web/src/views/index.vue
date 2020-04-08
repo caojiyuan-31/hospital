@@ -18,9 +18,18 @@
       width="100">
     </el-table-column>
     <el-table-column
-      prop="probility"
-      label="推荐系数"
-      width="340">
+      label="推荐星级"
+      width="200">
+      <template slot-scope="scope">
+        <el-rate
+          v-model="scope.row.probility"
+          disabled
+          show-score
+          :colors="colors"
+          text-color="#ff9900"
+          score-template="{value}">
+        </el-rate>
+      </template>
     </el-table-column>
     <el-table-column
       fixed="right"
@@ -186,6 +195,8 @@ import store from '../store/store';
 export default {
   data() {
     return {
+      value2: 2.3,
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
       categoryList: [],
       dialogVisible: false,
       input: '',

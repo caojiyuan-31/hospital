@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -51,9 +52,35 @@ public class DataController {
         Department re = departmentService.queryPageList(new Page(1, 20), null, d).get(0);*/
 
         List<CategoryRes> re = classify(text);
+        Double c = re.get(0).getProbility();
+        re.get(0).setProbility(5.0D);
+
+        for(int i = 1 ; i < re.size() ; i++){
+            re.get(i).setProbility(setProbability(re.get(i).getProbility(), c));
+        }
 
         return new Result(re);
 
+    }
+
+    private Double setProbability(Double in, Double c){
+        Double re = 0.1D;
+        Integer n = 4;
+        Double d = in / c;
+
+
+        while (d < 0.1){
+            d = d * 10;
+            n = n - 1;
+            if(n == 0){
+                return re;
+            }
+        }
+
+        DecimalFormat df=new DecimalFormat("0.0");
+        re = n + Double.valueOf(df.format(d));
+
+        return re;
     }
 
     /**
@@ -69,7 +96,7 @@ public class DataController {
         for (int i = 0; i <X.length; i++)
         {
             String Xi = X[i];
-            //因为结果过小，因此在连乘之前放大100倍，这对最终结果并无影响，因为我们只是比较概率大小而已
+            //因为结果过小，因此在连乘之前放大100倍
             ret *= probabilityService.calculatePxc(Xi, Cj)*100 * probabilityService.calculatePx(Xi, Cj);
 
         }

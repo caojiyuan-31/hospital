@@ -55,7 +55,7 @@ public class ProbabilityServiceImpl {
         float Nxc = dm.getCountContainKeyOfCategory(c, x);
         float Nc = dm.getDataCountOfCategory(c);
         float V = dm.getCategory().size();
-        ret = (Nxc + 1) / (Nc + M + V); //为了避免出现0这样极端情况，进行加权处理
+        ret = (Nxc + 1) / (Nc + M + V);
         return ret;
     }
 
