@@ -70,7 +70,7 @@ public class ReplyController {
     @RequestMapping(value = "/save", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     @ResponseBody
     @Secured("ROLE_USER")
-    public Result saveUser(@RequestBody Reply reply) throws GlobalException {
+    public Result save(@RequestBody Reply reply) throws GlobalException {
 
         if(CheckUtils.isEmptyBatch(reply.getToName(), reply.getText()) || reply.getParentId() == null){
             throw new GlobalException(ResultEnum.DATA_ERROR);
@@ -91,6 +91,16 @@ public class ReplyController {
         reply.setFromName(u.getUsername());
 
         replyService.save(reply);
+        return new Result();
+
+    }
+
+    @RequestMapping(value = "/delete", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
+    @ResponseBody
+    @Secured("ROLE_DOCTOR")
+    public Result delReply(@RequestBody Long id) throws GlobalException {
+
+        replyService.delete(id);
         return new Result();
 
     }

@@ -54,6 +54,9 @@ export default {
   addReply(reply) {
     return axios.post(api.addReply(), reply, { headers });
   },
+  delReply(id) {
+    return axios.post(api.delReply(), id, { headers });
+  },
   getRegister(pageNo, pageSize, userId, doctorId, date, scope, status) {
     return axios.get(api.getRegister(), { params: { pageNo, pageSize, userId, doctorId, date, scope, status } });
   },

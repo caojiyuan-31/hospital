@@ -38,10 +38,11 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="160">
+      width="220">
       <template slot-scope="scope">
         <el-button @click="toClick(scope.row)" type="text" size="small">查看页面</el-button>
         <el-button @click="replyClick(scope.row)" type="text" size="small">回复评论</el-button>
+        <el-button @click="delReply(scope.row)" type="text" size="small" v-if="isShow">删除评论</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -69,6 +70,7 @@ import fetch from '../api/fetch';
 export default {
   data() {
     return {
+      isShow: false,
       dialogVisible: false,
       reply: {
         parentId: 0,
@@ -82,12 +84,14 @@ export default {
         pageSize: 10,
         toName: '',
       },
-      oldTotal: 0,
       replyTotal: 0,
     };
   },
   mounted() {
     this.getSelfInfo();
+    if (localStorage.getItem('roles') == 2) {
+      this.isShow = true;
+    }
   },
   watch: {
     refresh() {
@@ -165,7 +169,27 @@ export default {
           if (res.data.code === '00000') {
             this.replyPage.toName = res.data.data.username;
             this.getReply();
-            this.oldTotal = this.replyTotal;
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data.msg,
+            });
+          }
+        })
+        .catch((err) => {
+          this.$message({
+            type: 'error',
+            message: err,
+          });
+        });
+    },
+
+    delReply(row) {
+      fetch
+        .delReply(row.id)
+        .then((res) => {
+          if (res.data.code === '00000') {
+            this.getReply();
           } else {
             this.$message({
               type: 'warning',

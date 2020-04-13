@@ -61,6 +61,9 @@ export default {
   addReply() {
     return `${localhost}/reply/save`;
   },
+  delReply() {
+    return `${localhost}/reply/delete`;
+  },
   getRegister() {
     return `${localhost}/register/list`;
   },
