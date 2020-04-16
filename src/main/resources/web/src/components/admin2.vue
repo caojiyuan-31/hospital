@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <!-- <el-dialog
-      title="新增公告"
+    <el-dialog
+      title="新增科室"
       :modal=false
       :visible.sync="dialogVisible1"
       width="30%"
@@ -35,7 +35,7 @@
         <el-button @click="clickClose">取 消</el-button>
         <el-button type="primary" @click="addDepartment">确 定</el-button>
       </span>
-    </el-dialog> -->
+    </el-dialog>
 
     <el-dialog
       title="修改科室信息"
@@ -73,9 +73,9 @@
       </span>
     </el-dialog>
 
-    <!-- <div class="introduce123">
+    <div class="introduce123">
       <el-button type="success" round @click="dialogVisible1 = true">新增科室</el-button>
-    </div> -->
+    </div>
 
     <el-table
     :data="departmentList"
@@ -112,10 +112,10 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="80">
+      width="160">
       <template slot-scope="scope">
         <el-button @click="updateRow(scope.row)" size="small" type="primary">修改</el-button>
-        <!-- <el-button @click="deleteRow(scope.row)" size="small" type="danger">删除</el-button> -->
+        <el-button @click="deleteRow(scope.row)" size="small" type="danger">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
